@@ -2,7 +2,6 @@ import {
   Background,
   Badge,
   Button,
-  Carousel,
   Card,
   Flex,
   Grid,
@@ -12,24 +11,22 @@ import {
   List,
   ListItem,
   Particle,
-  RevealFx,
-  Scroller,
   Tag,
   Text,
-  Timeline,
 } from "@once-ui-system/core";
+import ExperienceTimeline from "./components/ExperienceTimeline";
 
 type Repo = {
   id: number;
   name: string;
   html_url: string;
-  description: string | null;
-  language: string | null;
   stargazers_count: number;
   updated_at: string;
   fork: boolean;
   archived: boolean;
   private: boolean;
+  description: string | null;
+  language: string | null;
 };
 
 const githubUser = "Kojixus";
@@ -70,27 +67,42 @@ const highlights = [
   },
 ];
 
-const caseSnapshots = [
+const competencies = [
   {
-    title: "Infrastructure roadmap delivery",
-    metric: "99.9% uptime",
+    title: "Project Delivery",
     description:
-      "Integrated scalable infrastructure and automated deployments while delivering 10% under budget.",
-    tags: ["IT roadmap", "CI/CD", "Hosting"],
+      "Scope, schedule, and budget ownership with clear stakeholder alignment.",
+    tag: "Execution",
   },
   {
-    title: "Procurement compliance at scale",
-    metric: "$2M+ contracts",
+    title: "Procurement & Compliance",
     description:
-      "Executed RFQ/RFP/PO workflows and ensured FAR/DFARS compliance across high-value programs.",
-    tags: ["RFQ/RFP", "FAR/DFARS", "Supplier KPIs"],
+      "RFQ/RFP/PO workflows with FAR/DFARS and supplier performance focus.",
+    tag: "Sourcing",
   },
   {
-    title: "Process automation wins",
-    metric: "15% faster delivery",
+    title: "Operational Analytics",
     description:
-      "Built KPI dashboards and automation that reduced delivery time by 15% and costs by 12%.",
-    tags: ["Dashboards", "Automation", "Cost savings"],
+      "KPIs, dashboards, and reporting that drive measurable efficiency gains.",
+    tag: "Data",
+  },
+  {
+    title: "Infrastructure & Web",
+    description:
+      "Reliable hosting, deployments, and digital experience improvements.",
+    tag: "IT",
+  },
+  {
+    title: "Stakeholder Leadership",
+    description:
+      "Cross-functional collaboration with clear communication and cadence.",
+    tag: "Leadership",
+  },
+  {
+    title: "ERP & Tooling",
+    description:
+      "Hands-on ERP systems, process mapping, and workflow enablement.",
+    tag: "Systems",
   },
 ];
 
@@ -145,7 +157,7 @@ const experience = [
   },
 ];
 
-const leadership = [
+const leadershipPrimary = [
   {
     title: "Aerospace Transport, Project Lead",
     dates: "Jan 2025 - May 2025",
@@ -153,6 +165,30 @@ const leadership = [
       "Built a WBS with 24 work packages for clear ownership and progress tracking.",
       "Developed a $137,700 budget with time-phased estimates for 3,610 labor hours.",
       "Conducted stakeholder analysis with NASA, SpaceX, and Boeing.",
+    ],
+  },
+];
+
+const leadershipSecondary = [
+  {
+    title: "Knights Racing Formula SAE (UCF), Secretary & Website Developer",
+    dates: "May 2024 - May 2025",
+    bullets: [
+      "Managed sponsorship relationships, reached out to potential sponsors, promoted club events, and supported the outreach and business lead.",
+      "Built and designed the club site in WordPress to strengthen online presence, visual appeal, and functionality.",
+      "Assisted the President, Vice President, and Team Lead with tasks.",
+      "Recorded meeting minutes for team and leadership meetings for members who could not attend.",
+      "Documented information for incoming leadership to transfer knowledge.",
+      "Managed incoming members and ensured all safety forms were completed before working on the car.",
+      "Helped organize finances for next year's budget.",
+    ],
+  },
+  {
+    title: "Knights Racing Formula SAE (UCF), Outreach Lead & Website Developer",
+    dates: "Sep 2023 - May 2024",
+    bullets: [
+      "Managed sponsorship relationships, reached out to potential sponsors, promoted club events, and supported the secretary and business lead.",
+      "Built and designed the club site in WordPress to strengthen online presence, visual appeal, and functionality.",
     ],
   },
 ];
@@ -165,16 +201,59 @@ const education = [
   },
 ];
 
-const skills = [
-  "Project management",
-  "Subcontract sourcing",
-  "Procurement compliance",
-  "ERP systems",
-  "Data analysis",
-  "Cross-functional collaboration",
-  "Supply chain operations",
-  "Stakeholder management",
+const educationHighlights = [
+  "B.S. Business Administration",
+  "Integrated Business",
+  "Orlando, FL",
 ];
+
+const educationDetails = {
+  gpa: "",
+  honors: "",
+  capstone: "",
+};
+
+const coursework: string[] = [];
+
+const hasEducation =
+  education.length > 0 ||
+  educationHighlights.length > 0 ||
+  coursework.length > 0 ||
+  Boolean(educationDetails.gpa || educationDetails.honors || educationDetails.capstone);
+
+const currentFocus = {
+  projects: ["Portfolio refresh", "Personal project"],
+  languages: ["Python", "JavaScript"],
+  certifications: ["Certification in progress"],
+};
+
+const skillGroups = [
+  {
+    key: "tech",
+    label: "Tech skills",
+    variant: "accent" as const,
+    items: ["ERP systems", "Data analysis"],
+  },
+  {
+    key: "hard",
+    label: "Hard skills",
+    variant: "brand" as const,
+    items: [
+      "Project management",
+      "Subcontract sourcing",
+      "Procurement compliance",
+      "Supply chain operations",
+    ],
+  },
+  {
+    key: "soft",
+    label: "Soft skills",
+    variant: "neutral" as const,
+    items: ["Cross-functional collaboration", "Stakeholder management"],
+  },
+];
+
+const skills = skillGroups.flatMap((group) => group.items);
 
 const tools = [
   { label: "SAP", variant: "brand" as const },
@@ -206,70 +285,37 @@ async function getRepos(): Promise<Repo[]> {
   }
 }
 
+const formatRepoDate = (isoDate: string) => {
+  if (!isoDate) {
+    return "";
+  }
+  return new Intl.DateTimeFormat("en-US", {
+    month: "short",
+    year: "numeric",
+  }).format(new Date(isoDate));
+};
+
 export default async function Home() {
   const repos = await getRepos();
-  const visibleRepos = repos.slice(0, 6);
-  const caseCarouselItems = caseSnapshots.map((snapshot) => ({
-    slide: (
-      <Flex
-        direction="column"
-        gap="12"
-        padding="24"
-        fill
-        background="surface"
-        onBackground="neutral-strong"
-      >
-        <Tag variant="brand" label={snapshot.metric} />
-        <Heading as="h3" variant="heading-strong-m">
-          {snapshot.title}
-        </Heading>
-        <Text as="p" variant="body-default-s" onBackground="neutral-medium">
-          {snapshot.description}
-        </Text>
-        <Flex direction="row" gap="8" wrap>
-          {snapshot.tags.map((tag) => (
-            <Tag key={tag} variant="neutral" label={tag} />
-          ))}
-        </Flex>
-      </Flex>
-    ),
-  }));
-  const experienceTimeline = experience.map((role, index) => ({
-    label: (
-      <Flex direction="column" gap="2">
-        <Text variant="label-default-m">{role.role}</Text>
-        <Text variant="label-default-s" onBackground="neutral-medium">
-          {role.company}
-        </Text>
-      </Flex>
-    ),
-    description: (
-      <Text variant="label-default-s" onBackground="neutral-medium">
-        {role.location} · {role.dates}
-      </Text>
-    ),
-    marker: <Text variant="label-default-s">{index + 1}</Text>,
-    children: (
-      <List gap="8" marginTop="8">
-        {role.bullets.map((item) => (
-          <ListItem
-            key={item}
-            variant="body-default-s"
-            onBackground="neutral-medium"
-          >
-            {item}
-          </ListItem>
-        ))}
-      </List>
-    ),
-  }));
+  const rankedRepos = [...repos].sort((a, b) => {
+    if (b.stargazers_count !== a.stargazers_count) {
+      return b.stargazers_count - a.stargazers_count;
+    }
+    return (
+      new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime()
+    );
+  });
+  const visibleRepos = rankedRepos.slice(0, 3);
+  const primarySkills = skills.slice(0, 6);
 
   return (
     <Flex
+      id="top"
       direction="column"
       fillWidth
       background="page"
       onBackground="neutral-strong"
+      className="ambient-bg"
     >
       <Flex
         position="relative"
@@ -321,20 +367,21 @@ export default async function Home() {
             color: "accent-on-background-weak",
           }}
         />
-        <RevealFx translateY="12" speed="slow" zIndex={1} fillWidth>
-          <Flex
-            direction="column"
-            gap="32"
-            fillWidth
-            horizontal="center"
-            align="center"
-            style={{
-              maxWidth: "1100px",
-              margin: "0 auto",
-              width: "100%",
-              textAlign: "center",
-            }}
-          >
+        <Flex
+          direction="column"
+          gap="32"
+          fillWidth
+          horizontal="center"
+          align="center"
+          className="stagger-reveal"
+          style={{
+            maxWidth: "1100px",
+            margin: "0 auto",
+            width: "100%",
+            textAlign: "center",
+            zIndex: 1,
+          }}
+        >
             <Badge icon="sparkle" title="IT Project Manager" />
             <Flex
               direction="column"
@@ -356,7 +403,7 @@ export default async function Home() {
                 variant="body-default-l"
                 onBackground="neutral-medium"
                 align="center"
-                style={{ maxWidth: "760px" }}
+                style={{ maxWidth: "760px", margin: "0 auto", textAlign: "center" }}
               >
                 Project management and supply chain professional focused on
                 infrastructure delivery, procurement operations, and data-driven
@@ -378,9 +425,9 @@ export default async function Home() {
               </Button>
             </Flex>
             <Flex direction="row" gap="8" wrap horizontal="center">
-              <Tag variant="brand" label="Project Management" />
-              <Tag variant="accent" label="Supply Chain" />
-              <Tag variant="neutral" label="IT Infrastructure" />
+              <Tag className="hover-lift" variant="brand" label="Project Management" />
+              <Tag className="hover-lift" variant="accent" label="Supply Chain" />
+              <Tag className="hover-lift" variant="neutral" label="IT Infrastructure" />
             </Flex>
             <Flex direction="row" gap="12" wrap horizontal="center">
               <Text variant="label-default-s" onBackground="neutral-medium">
@@ -393,338 +440,512 @@ export default async function Home() {
                 {contact.email}
               </Text>
             </Flex>
-          </Flex>
-        </RevealFx>
-      </Flex>
-
-      <Flex direction="column" gap="8" paddingY="80" paddingX="24">
-        <Flex
-          direction="column"
-          gap="12"
-          style={{ maxWidth: "1100px", margin: "0 auto", width: "100%" }}
-        >
-          <Tag variant="neutral" size="s" label="Executive summary" />
-          <Heading as="h2" variant="heading-strong-l">
-            Driving measurable delivery and cost outcomes.
-          </Heading>
-          <Text as="p" variant="body-default-m" onBackground="neutral-medium">
-            {summary}
-          </Text>
-        </Flex>
-
-        <Grid
-          columns="3"
-          gap="16"
-          m={{ columns: "2" }}
-          s={{ columns: "1" }}
-          style={{ maxWidth: "1100px", margin: "0 auto", width: "100%" }}
-        >
-          {highlights.map((item) => (
-            <Card
-              key={item.title}
-              direction="column"
-              gap="16"
-              padding="24"
-              radius="l"
-            >
-              <Flex direction="row" horizontal="between" vertical="center">
-                <Icon name={item.icon} size="l" onBackground="brand-strong" />
-                <Tag variant="neutral" label={item.tag} />
-              </Flex>
-              <Heading as="h3" variant="heading-strong-m">
-                {item.title}
-              </Heading>
-              <Text
-                as="p"
-                variant="body-default-s"
-                onBackground="neutral-medium"
-              >
-                {item.description}
-              </Text>
-            </Card>
-          ))}
-        </Grid>
-      </Flex>
-
-      <Flex direction="column" gap="32" paddingY="80" paddingX="24">
-        <Flex
-          direction="column"
-          gap="12"
-          style={{ maxWidth: "1100px", margin: "0 auto", width: "100%" }}
-        >
-          <Tag variant="neutral" size="s" label="Case snapshots" />
-          <Heading as="h2" variant="heading-strong-l">
-            Recent wins with measurable outcomes.
-          </Heading>
-          <Text as="p" variant="body-default-m" onBackground="neutral-medium">
-            A few representative engagements that highlight delivery,
-            compliance, and efficiency results.
-          </Text>
-        </Flex>
-
-        <Flex style={{ maxWidth: "1100px", margin: "0 auto", width: "100%" }}>
-          <Carousel
-            items={caseCarouselItems}
-            radius="l"
-            indicator="line"
-            aspectRatio="16/9"
-            play={{
-              auto: true,
-              interval: 5000,
-              controls: true,
-              progress: true,
-            }}
-          />
         </Flex>
       </Flex>
 
       <Line opacity={20} />
 
-      <Flex
-        id="experience"
-        direction="column"
-        gap="32"
-        paddingY="80"
-        paddingX="24"
-      >
+      <Flex paddingY="80" paddingX="24">
         <Flex
-          direction="column"
-          gap="12"
+          className="profile-layout"
           style={{ maxWidth: "1100px", margin: "0 auto", width: "100%" }}
         >
-          <Tag variant="neutral" size="s" label="Professional experience" />
-          <Heading as="h2" variant="heading-strong-l">
-            Projects, procurement, and operational leadership.
-          </Heading>
-        </Flex>
-
-        <Flex style={{ maxWidth: "1100px", margin: "0 auto", width: "100%" }}>
-          <Timeline items={experienceTimeline} gap="16" />
-        </Flex>
-      </Flex>
-
-      <Flex direction="column" gap="32" paddingY="80" paddingX="24">
-        <Flex
-          direction="column"
-          gap="12"
-          style={{ maxWidth: "1100px", margin: "0 auto", width: "100%" }}
-        >
-          <Tag variant="neutral" size="s" label="Education and leadership" />
-          <Heading as="h2" variant="heading-strong-l">
-            Foundation in business and project leadership.
-          </Heading>
-        </Flex>
-
-        <Grid
-          columns="2"
-          gap="16"
-          s={{ columns: "1" }}
-          style={{ maxWidth: "1100px", margin: "0 auto", width: "100%" }}
-        >
-          <Card direction="column" gap="20" padding="24" radius="l">
-            <Heading as="h3" variant="heading-strong-m">
-              Education
-            </Heading>
-            {education.map((item) => (
-              <Flex key={item.school} direction="column" gap="4">
-                <Text variant="label-default-m">{item.school}</Text>
-                <Text variant="body-default-s" onBackground="neutral-medium">
-                  {item.degree}
+          <Flex className="profile-panel" direction="column" gap="16">
+            <Card
+              direction="column"
+              gap="16"
+              padding="24"
+              radius="l"
+              className="hover-lift stagger-reveal"
+            >
+              <Tag className="hover-lift" variant="neutral" size="s" label="Profile" />
+              <Heading as="h3" variant="heading-strong-m">
+                Quick profile
+              </Heading>
+              <Flex direction="column" gap="8">
+                <Text variant="label-default-m" onBackground="neutral-medium">
+                  Location
                 </Text>
-                <Text variant="label-default-s" onBackground="neutral-medium">
-                  {item.location}
+                <Text variant="body-default-s">{contact.location}</Text>
+                <Text variant="label-default-m" onBackground="neutral-medium">
+                  Email
                 </Text>
+                <Text variant="body-default-s">{contact.email}</Text>
+                <Text variant="label-default-m" onBackground="neutral-medium">
+                  Phone
+                </Text>
+                <Text variant="body-default-s">{contact.phone}</Text>
               </Flex>
-            ))}
-          </Card>
-          <Card direction="column" gap="20" padding="24" radius="l">
-            <Heading as="h3" variant="heading-strong-m">
-              Leadership
-            </Heading>
-            {leadership.map((item) => (
-              <Flex key={item.title} direction="column" gap="12">
-                <Flex direction="column" gap="4">
-                  <Text variant="label-default-m">{item.title}</Text>
-                  <Text variant="label-default-s" onBackground="neutral-medium">
-                    {item.dates}
-                  </Text>
+              <Flex direction="column" gap="8">
+                <Heading as="h4" variant="heading-strong-s">
+                  Top skills
+                </Heading>
+                <Flex direction="row" gap="8" wrap style={{ rowGap: "8px" }}>
+                  {primarySkills.map((item) => (
+                    <Tag className="hover-lift" key={item} variant="neutral" label={item} />
+                  ))}
                 </Flex>
-                <List gap="8">
-                  {item.bullets.map((bullet) => (
-                    <ListItem
-                      key={bullet}
+              </Flex>
+              <Flex direction="column" gap="8">
+                <Heading as="h4" variant="heading-strong-s">
+                  Currently learning
+                </Heading>
+                <Flex direction="row" gap="8" wrap style={{ rowGap: "8px" }}>
+                  {currentFocus.languages.map((item) => (
+                    <Tag className="hover-lift" key={item} variant="accent" label={item} />
+                  ))}
+                </Flex>
+                <Flex direction="row" gap="8" wrap style={{ rowGap: "8px" }}>
+                  {currentFocus.projects.map((item) => (
+                    <Tag className="hover-lift" key={item} variant="neutral" label={item} />
+                  ))}
+                </Flex>
+                <Flex direction="row" gap="8" wrap style={{ rowGap: "8px" }}>
+                  {currentFocus.certifications.map((item) => (
+                    <Tag className="hover-lift" key={item} variant="brand" label={item} />
+                  ))}
+                </Flex>
+              </Flex>
+              <Button
+                size="m"
+                variant="secondary"
+                href={`mailto:${contact.email}`}
+                className="hover-lift"
+              >
+                Email me
+              </Button>
+            </Card>
+          </Flex>
+
+          <Flex className="profile-content stagger-reveal" direction="column" gap="48">
+            <Flex direction="column" gap="12">
+              <Tag className="hover-lift" variant="neutral" size="s" label="Executive summary" />
+              <Heading as="h2" variant="heading-strong-l">
+                Driving measurable delivery and cost outcomes.
+              </Heading>
+              <Text as="p" variant="body-default-m" onBackground="neutral-medium">
+                {summary}
+              </Text>
+            </Flex>
+
+            <Flex
+              id="experience"
+              direction="column"
+              gap="16"
+              background="surface"
+              padding="24"
+              radius="l"
+              className="hover-lift"
+            >
+              <Tag className="hover-lift" variant="neutral" size="s" label="Professional experience" />
+              <Heading as="h2" variant="heading-strong-l">
+                Projects, procurement, and operational leadership.
+              </Heading>
+              <ExperienceTimeline roles={experience} />
+            </Flex>
+
+            <Flex direction="column" gap="12">
+              <Tag className="hover-lift" variant="neutral" size="s" label="Highlights" />
+              <Heading as="h2" variant="heading-strong-l">
+                Focused on delivery, efficiency, and cost control.
+              </Heading>
+              <Flex direction="column" gap="16">
+                {highlights.map((item) => (
+                  <Flex key={item.title} direction="column" gap="8">
+                    <Flex
+                      direction="row"
+                      gap="12"
+                      horizontal="between"
+                      vertical="center"
+                      wrap
+                    >
+                      <Flex direction="row" gap="12" vertical="center" wrap>
+                        <Icon name={item.icon} size="l" onBackground="brand-strong" />
+                        <Heading as="h3" variant="heading-strong-m">
+                          {item.title}
+                        </Heading>
+                      </Flex>
+                      <Tag className="hover-lift" variant="neutral" label={item.tag} />
+                    </Flex>
+                    <Text
+                      as="p"
                       variant="body-default-s"
                       onBackground="neutral-medium"
                     >
-                      {bullet}
-                    </ListItem>
-                  ))}
-                </List>
+                      {item.description}
+                    </Text>
+                  </Flex>
+                ))}
               </Flex>
-            ))}
-          </Card>
-        </Grid>
-      </Flex>
+            </Flex>
 
-      <Flex direction="column" gap="32" paddingY="80" paddingX="24">
-        <Flex
-          direction="column"
-          gap="12"
-          style={{ maxWidth: "1100px", margin: "0 auto", width: "100%" }}
-        >
-          <Tag variant="neutral" size="s" label="Skills and certifications" />
-          <Heading as="h2" variant="heading-strong-l">
-            Tools, platforms, and credentials.
-          </Heading>
-        </Flex>
+            <Flex
+              direction="column"
+              gap="12"
+              background="surface"
+              padding="24"
+              radius="l"
+              className="hover-lift"
+            >
+              <Tag className="hover-lift" variant="neutral" size="s" label="Key competencies" />
+              <Heading as="h2" variant="heading-strong-l">
+                Capabilities that drive reliable delivery.
+              </Heading>
+              <Text as="p" variant="body-default-m" onBackground="neutral-medium">
+                A focused view of the skills I apply across projects, procurement,
+                and operations.
+              </Text>
+              <Grid columns="2" gap="16" s={{ columns: "1" }}>
+                {competencies.map((item) => (
+                  <Flex key={item.title} direction="column" gap="6">
+                    <Flex direction="row" gap="8" vertical="center" wrap>
+                      <Text variant="label-default-m">{item.title}</Text>
+                      <Tag className="hover-lift" variant="neutral" label={item.tag} />
+                    </Flex>
+                    <Text
+                      as="p"
+                      variant="body-default-s"
+                      onBackground="neutral-medium"
+                    >
+                      {item.description}
+                    </Text>
+                  </Flex>
+                ))}
+              </Grid>
+            </Flex>
 
-        <Grid
-          columns="2"
-          gap="16"
-          s={{ columns: "1" }}
-          style={{ maxWidth: "1100px", margin: "0 auto", width: "100%" }}
-        >
-          <Card direction="column" gap="16" padding="24" radius="l">
-            <Heading as="h3" variant="heading-strong-m">
-              Core skills
-            </Heading>
-            <Scroller gap="8" fadeColor="page" radius="l" paddingY="4">
-              {skills.map((item) => (
-                <Tag key={item} variant="neutral" label={item} />
-              ))}
-            </Scroller>
-            <Heading as="h4" variant="heading-strong-s">
-              Tools
-            </Heading>
-            <Scroller gap="8" fadeColor="page" radius="l" paddingY="4">
-              {tools.map((item) => (
-                <Tag
-                  key={item.label}
-                  variant={item.variant}
-                  label={item.label}
-                />
-              ))}
-            </Scroller>
-          </Card>
-          <Card direction="column" gap="16" padding="24" radius="l">
-            <Heading as="h3" variant="heading-strong-m">
-              Certifications
-            </Heading>
-            <List gap="8">
-              {certifications.map((item) => (
-                <ListItem
-                  key={item}
-                  variant="body-default-s"
-                  onBackground="neutral-medium"
-                >
-                  {item}
-                </ListItem>
-              ))}
-            </List>
-          </Card>
-        </Grid>
-      </Flex>
-
-      <Flex direction="column" gap="32" paddingY="80" paddingX="24">
-        <Flex
-          direction="column"
-          gap="12"
-          style={{ maxWidth: "1100px", margin: "0 auto", width: "100%" }}
-        >
-          <Tag variant="neutral" size="s" label="GitHub" />
-          <Heading as="h2" variant="heading-strong-l">
-            Recent repositories
-          </Heading>
-          <Text as="p" variant="body-default-m" onBackground="neutral-medium">
-            Public work from the latest repos. Visit the profile for the full
-            list.
-          </Text>
-        </Flex>
-
-        {visibleRepos.length > 0 ? (
-          <Grid
-            columns="3"
-            gap="16"
-            m={{ columns: "2" }}
-            s={{ columns: "1" }}
-            style={{ maxWidth: "1100px", margin: "0 auto", width: "100%" }}
-          >
-            {visibleRepos.map((repo) => (
-              <Card
-                key={repo.id}
-                href={repo.html_url}
-                direction="column"
-                gap="12"
-                padding="24"
-                radius="l"
-              >
-                <Flex direction="row" horizontal="between" vertical="center">
+            <Flex direction="column" gap="24">
+            {hasEducation ? (
+              <Flex id="education" direction="column" gap="16">
+              <Tag className="hover-lift" variant="neutral" size="s" label="Education" />
+                <Flex direction="column" gap="16">
                   <Heading as="h3" variant="heading-strong-m">
-                    {repo.name}
+                    Education
                   </Heading>
-                  {repo.language ? (
-                    <Tag variant="neutral" label={repo.language} />
+                  <Flex direction="row" gap="8" wrap style={{ rowGap: "8px" }}>
+                    {educationHighlights.map((item) => (
+                      <Tag className="hover-lift" key={item} variant="neutral" label={item} />
+                    ))}
+                  </Flex>
+                  {education.map((item) => (
+                    <Flex key={item.school} direction="column" gap="4">
+                      <Text variant="label-default-m">{item.school}</Text>
+                      <Text
+                        variant="body-default-s"
+                        onBackground="neutral-medium"
+                      >
+                        {item.degree}
+                      </Text>
+                      <Text
+                        variant="label-default-s"
+                        onBackground="neutral-medium"
+                      >
+                        {item.location}
+                      </Text>
+                    </Flex>
+                  ))}
+                  {educationDetails.gpa ? (
+                    <Text variant="body-default-s" onBackground="neutral-medium">
+                      GPA: {educationDetails.gpa}
+                    </Text>
+                  ) : null}
+                  {educationDetails.honors ? (
+                    <Text variant="body-default-s" onBackground="neutral-medium">
+                      Honors: {educationDetails.honors}
+                    </Text>
+                  ) : null}
+                  {educationDetails.capstone ? (
+                    <Text variant="body-default-s" onBackground="neutral-medium">
+                      Capstone: {educationDetails.capstone}
+                    </Text>
+                  ) : null}
+                  {coursework.length > 0 ? (
+                    <Flex direction="column" gap="8">
+                      <Heading as="h4" variant="heading-strong-s">
+                        Relevant coursework
+                      </Heading>
+                      <Flex direction="row" gap="8" wrap style={{ rowGap: "8px" }}>
+                        {coursework.map((item) => (
+                          <Tag className="hover-lift" key={item} variant="neutral" label={item} />
+                        ))}
+                      </Flex>
+                    </Flex>
                   ) : null}
                 </Flex>
-                <Text
-                  as="p"
-                  variant="body-default-s"
-                  onBackground="neutral-medium"
-                >
-                  {repo.description ||
-                    "Repository details available on GitHub."}
-                </Text>
-                <Flex direction="row" gap="8" wrap>
-                  <Tag
-                    variant="accent"
-                    label={`${repo.stargazers_count} stars`}
-                  />
-                </Flex>
-              </Card>
-            ))}
-          </Grid>
-        ) : (
-          <Card
-            direction="column"
-            gap="16"
-            padding="24"
-            radius="l"
-            style={{ maxWidth: "1100px", margin: "0 auto", width: "100%" }}
-          >
-            <Text variant="body-default-m" onBackground="neutral-medium">
-              No public repositories found yet.
-            </Text>
-            <Button
-              size="m"
-              variant="secondary"
-              href={`https://github.com/${githubUser}`}
-            >
-              Visit GitHub profile
-            </Button>
-          </Card>
-        )}
+              </Flex>
+            ) : null}
 
-        <Flex
-          direction="row"
-          horizontal="center"
-          style={{ maxWidth: "1100px", margin: "0 auto", width: "100%" }}
-        >
-          <Button
-            size="m"
-            variant="tertiary"
-            href={`https://github.com/${githubUser}`}
-          >
-            View all repositories
-          </Button>
+            <Flex id="leadership" direction="column" gap="16">
+              <Tag className="hover-lift" variant="neutral" size="s" label="Leadership" />
+              <Heading as="h2" variant="heading-strong-l">
+                Leadership roles and campus involvement.
+              </Heading>
+              <Flex direction="column" gap="16">
+                <Flex direction="column" gap="12">
+                  <Heading as="h4" variant="heading-strong-s">
+                    Leadership roles
+                  </Heading>
+                  {leadershipPrimary.map((item) => (
+                    <Flex key={item.title} direction="column" gap="12">
+                      <Flex direction="column" gap="4">
+                        <Text variant="label-default-m">{item.title}</Text>
+                        <Text
+                          variant="label-default-s"
+                          onBackground="neutral-medium"
+                        >
+                          {item.dates}
+                        </Text>
+                      </Flex>
+                      <List gap="8">
+                        {item.bullets.map((bullet) => (
+                          <ListItem
+                            key={bullet}
+                            variant="body-default-s"
+                            onBackground="neutral-medium"
+                          >
+                            {bullet}
+                          </ListItem>
+                        ))}
+                      </List>
+                    </Flex>
+                  ))}
+                </Flex>
+                <Flex direction="column" gap="12">
+                  <Heading as="h4" variant="heading-strong-s">
+                    Campus & club leadership
+                  </Heading>
+                  {leadershipSecondary.map((item) => (
+                    <Flex key={item.title} direction="column" gap="12">
+                      <Flex direction="column" gap="4">
+                        <Text variant="label-default-m">{item.title}</Text>
+                        <Text
+                          variant="label-default-s"
+                          onBackground="neutral-medium"
+                        >
+                          {item.dates}
+                        </Text>
+                      </Flex>
+                      <List gap="8">
+                        {item.bullets.map((bullet) => (
+                          <ListItem
+                            key={bullet}
+                            variant="body-default-s"
+                            onBackground="neutral-medium"
+                          >
+                            {bullet}
+                          </ListItem>
+                        ))}
+                      </List>
+                    </Flex>
+                  ))}
+                </Flex>
+              </Flex>
+            </Flex>
+
+            </Flex>
+
+            <Flex
+              id="skills"
+              direction="column"
+              gap="24"
+              background="surface"
+              padding="24"
+              radius="l"
+              className="hover-lift"
+            >
+              <Flex direction="column" gap="8">
+                <Tag
+                  className="hover-lift"
+                  variant="neutral"
+                  size="s"
+                  label="Skills and certifications"
+                />
+                <Heading as="h2" variant="heading-strong-l">
+                  Tools, platforms, and credentials.
+                </Heading>
+              </Flex>
+              <Grid columns="2" gap="24" s={{ columns: "1" }} style={{ marginTop: "4px" }}>
+                <Flex direction="column" gap="12">
+                  <Heading as="h3" variant="heading-strong-m">
+                    Core skills
+                  </Heading>
+                  <Flex direction="column" gap="12">
+                    {skillGroups.map((group) => (
+                      <Flex key={group.label} direction="column" gap="10">
+                        <Text
+                          variant="label-default-m"
+                          onBackground="neutral-medium"
+                        >
+                          {group.label}
+                        </Text>
+                        <Flex
+                          direction="row"
+                          gap="8"
+                          wrap
+                          style={{ rowGap: "8px", marginTop: "2px" }}
+                        >
+                          {group.items.map((item) => (
+                            <Tag
+                              className={`hover-lift skill-tag skill-tag--${group.key}`}
+                              key={item}
+                              variant={group.variant}
+                              label={item}
+                            />
+                          ))}
+                        </Flex>
+                      </Flex>
+                    ))}
+                  </Flex>
+                  <Heading as="h4" variant="heading-strong-s">
+                    Tools
+                  </Heading>
+                  <Flex direction="row" gap="8" wrap style={{ rowGap: "8px" }}>
+                    {tools.map((item) => (
+                      <Tag className="hover-lift" key={item.label}
+                        variant={item.variant}
+                        label={item.label}
+                      />
+                    ))}
+                  </Flex>
+                  <Flex direction="row" gap="8" wrap style={{ rowGap: "8px" }}>
+                    <Text variant="label-default-s" onBackground="neutral-medium">
+                      Key:
+                    </Text>
+                    <Tag
+                      className="hover-lift skill-tag skill-tag--tech"
+                      variant="accent"
+                      label="Tech"
+                    />
+                    <Tag
+                      className="hover-lift skill-tag skill-tag--hard"
+                      variant="brand"
+                      label="Hard"
+                    />
+                    <Tag
+                      className="hover-lift skill-tag skill-tag--soft"
+                      variant="neutral"
+                      label="Soft"
+                    />
+                  </Flex>
+                </Flex>
+                <Flex direction="column" gap="12">
+                  <Heading as="h3" variant="heading-strong-m">
+                    Certifications
+                  </Heading>
+                  <List gap="8">
+                    {certifications.map((item) => (
+                      <ListItem
+                        key={item}
+                        variant="body-default-s"
+                        onBackground="neutral-medium"
+                      >
+                        {item}
+                      </ListItem>
+                    ))}
+                  </List>
+                </Flex>
+              </Grid>
+            </Flex>
+
+            <Flex id="github" direction="column" gap="16">
+              <Tag className="hover-lift" variant="neutral" size="s" label="GitHub" />
+              <Heading as="h2" variant="heading-strong-l">
+                Selected repositories
+              </Heading>
+              <Text as="p" variant="body-default-m" onBackground="neutral-medium">
+                Highlighted public work ordered by stars, then recent activity.
+                Visit the profile for the full list.
+              </Text>
+
+              {visibleRepos.length > 0 ? (
+                <Grid
+                  columns="3"
+                  gap="16"
+                  m={{ columns: "2" }}
+                  s={{ columns: "1" }}
+                >
+                  {visibleRepos.map((repo) => (
+                    <Card
+                      key={repo.id}
+                      href={repo.html_url}
+                      direction="column"
+                      gap="12"
+                      padding="24"
+                      radius="l"
+                      className="hover-lift"
+                    >
+                      <Flex direction="row" horizontal="between" vertical="center">
+                        <Heading as="h3" variant="heading-strong-m">
+                          {repo.name}
+                        </Heading>
+                        {repo.language ? (
+                          <Tag className="hover-lift" variant="neutral" label={repo.language} />
+                        ) : null}
+                      </Flex>
+                      <Text
+                        as="p"
+                        variant="body-default-s"
+                        onBackground="neutral-medium"
+                      >
+                        {repo.description ||
+                          "Repository details available on GitHub."}
+                      </Text>
+                      <Flex direction="row" gap="8" wrap>
+                        <Tag className="hover-lift" variant="accent"
+                          label={`${repo.stargazers_count} stars`}
+                        />
+                        {repo.updated_at ? (
+                          <Tag className="hover-lift" variant="neutral"
+                            label={`Updated ${formatRepoDate(repo.updated_at)}`}
+                          />
+                        ) : null}
+                      </Flex>
+                    </Card>
+                  ))}
+                </Grid>
+              ) : (
+                <Card
+                  direction="column"
+                  gap="16"
+                  padding="24"
+                  radius="l"
+                  className="hover-lift"
+                >
+                  <Text variant="body-default-m" onBackground="neutral-medium">
+                    No public repositories found yet.
+                  </Text>
+                  <Button
+                    size="m"
+                    variant="secondary"
+                    href={`https://github.com/${githubUser}`}
+                  >
+                    Visit GitHub profile
+                  </Button>
+                </Card>
+              )}
+
+              <Flex direction="row" horizontal="center">
+                <Button
+                  size="m"
+                  variant="tertiary"
+                  href={`https://github.com/${githubUser}`}
+                  className="hover-lift"
+                >
+                  View all repositories
+                </Button>
+              </Flex>
+            </Flex>
+          </Flex>
         </Flex>
       </Flex>
 
-      <Flex paddingX="24" paddingBottom="80">
+      <Flex id="contact" paddingX="24" paddingBottom="80">
         <Card
           direction="column"
           gap="16"
           padding="32"
           radius="l"
+          className="hover-lift"
           style={{ maxWidth: "1100px", margin: "0 auto", width: "100%" }}
         >
           <Heading as="h2" variant="heading-strong-l">
@@ -734,6 +955,14 @@ export default async function Home() {
             Open to project management, procurement, and supply chain
             opportunities.
           </Text>
+          <Text variant="label-default-s" onBackground="neutral-medium">
+            Open to full-time roles in Orlando or remote.
+          </Text>
+          <Flex direction="row" gap="8" wrap>
+            <Tag className="hover-lift" variant="brand" label="Project Management" />
+            <Tag className="hover-lift" variant="accent" label="Procurement" />
+            <Tag className="hover-lift" variant="neutral" label="Supply Chain" />
+          </Flex>
           <Flex direction="row" gap="12" wrap>
             <Button
               id="cta-email-footer"
@@ -741,10 +970,16 @@ export default async function Home() {
               variant="primary"
               arrowIcon
               href={`mailto:${contact.email}`}
+              className="hover-lift"
             >
               Email me
             </Button>
-            <Button size="m" variant="tertiary" href={contact.linkedin}>
+            <Button
+              size="m"
+              variant="tertiary"
+              href={contact.linkedin}
+              className="hover-lift"
+            >
               Connect on LinkedIn
             </Button>
           </Flex>
