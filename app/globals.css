@@ -1,0 +1,6 @@
+@import "@once-ui-system/core/css/tokens.css";
+@import "@once-ui-system/core/css/styles.css";
+
+body {
+  background: var(--page-background);
+}
