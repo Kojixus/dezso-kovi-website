@@ -1,6 +1,6 @@
 # My Portfolio Website
 
-Personal portfolio site for Dezso Kovi. Built with Next.js App Router and a custom UI system, optimized for fast iteration and clean presentation of experience, skills, and projects.
+My Personal portfolio site. Built with Next.js App Router and a custom UI system, optimized for fast iteration and clean presentation of experience, skills, and projects.
 
 ## Tech Stack
 
