@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Providers from "./providers";
 import { fonts } from "@/resources/once-ui.config";
+import { Analytics } from "@vercel/analytics/next"
 
 export const metadata: Metadata = {title: "Dezso Kovi - Portfolio", description: "Dezso Kovi Professional Portfolio",};
 export default function RootLayout({children,}: Readonly <{children: React.ReactNode;}>) {
