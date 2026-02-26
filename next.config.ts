@@ -1,8 +1,7 @@
-import path from "path";
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  outputFileTracingRoot: path.join(__dirname, ".."),
+  // Default Next.js config; Vercel handles output tracing automatically.
 };
 
 export default nextConfig;
