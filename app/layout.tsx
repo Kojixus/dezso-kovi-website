@@ -22,6 +22,7 @@ return (
     className={`${fonts.heading.variable} ${fonts.body.variable} ${fonts.label.variable} ${fonts.code.variable}`}suppressHydrationWarning>
     <body>
       <Providers>{children}</Providers>
+      <Analytics />
     </body>
   </html>
 );}
