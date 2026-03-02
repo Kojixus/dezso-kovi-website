@@ -500,16 +500,6 @@ export default async function Home() {
               </Flex>
               <Flex direction="column" gap="8">
                 <Heading as="h4" variant="heading-strong-s">
-                  Top skills
-                </Heading>
-                <Flex direction="row" gap="8" wrap style={{ rowGap: "8px" }}>
-                  {primarySkills.map((item) => (
-                    <Tag className="hover-lift" key={item} variant="neutral" label={item} />
-                  ))}
-                </Flex>
-              </Flex>
-              <Flex direction="column" gap="8">
-                <Heading as="h4" variant="heading-strong-s">
                   Currently learning
                 </Heading>
                 <Flex direction="row" gap="8" wrap style={{ rowGap: "8px" }}>

@@ -3,6 +3,7 @@ import "./globals.css";
 import Providers from "./providers";
 import { fonts } from "@/resources/once-ui.config";
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 export const metadata: Metadata = {
   title: "Dezso Kovi - Portfolio",
@@ -31,6 +32,7 @@ export default function RootLayout({
       <body>
         <Providers>{children}</Providers>
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
