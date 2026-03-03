@@ -188,7 +188,7 @@ const leadershipSecondary = [
     bullets: [
       "Supported Formula SAE team operations by managing internal documentation, membership records, and leadership coordination.",
       "Recorded and distributed meeting minutes for team-wide and leadership meetings to improve communication and accountability across subteams.",
-      "Documented key processes, procedures, and transition materials to support knowledge transfer for incoming leadership.",
+      "Documented processes, procedures, and transition materials to support knowledge transfer for incoming leadership.",
       "Managed new member onboarding and tracked required safety forms before members were cleared to work on the car.",
       "Assisted with sponsorship outreach, partner communication, and event promotion to support team funding and visibility.",
       "Built and maintained the team’s WordPress website to strengthen sponsor visibility, recruitment, and brand presence.",
@@ -258,8 +258,8 @@ const skillGroups = [
 const skills = skillGroups.flatMap((group) => group.items);
 
 const tools = [
-  { label: "SAP", variant: "brand" as const },
-  { label: "ERP", variant: "brand" as const },
+  { label: "SAP", variant: "neutral" as const },
+  { label: "ERP", variant: "neutral" as const },
   { label: "Microsoft Excel", variant: "neutral" as const },
   { label: "Microsoft Teams", variant: "neutral" as const },
   { label: "Micrsoft Outlook", variant: "neutral" as const },
