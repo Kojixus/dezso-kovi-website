@@ -357,15 +357,6 @@ export default async function Home() {
           bottom="0"
           left="0"
           pointerEvents="none"
-          gradient={{
-            display: true,
-            opacity: 70,
-            width: 60,
-            height: 60,
-            tilt: -18,
-            colorStart: "brand-background-strong",
-            colorEnd: "static-transparent",
-          }}
           dots={{
             display: true,
             opacity: 20,
