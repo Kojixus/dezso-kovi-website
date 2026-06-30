@@ -110,15 +110,26 @@ const competencies = [
 
 const experience = [
   {
+    company: "Radix Consulting Alliance",
+    location: "Remote",
+    role: "Data Analyst Contractor",
+    dates: "March 2026 - Present",
+    bullets: [
+      "Conducted large-scale data analysis for distribution center clients, surfacing operational insights.",
+      "Performed data analysis on 1M+ client records within distribution centers and warehousing environments.",
+      "Analyzed 1M+ records across distribution center client datasets to support warehousing operations.",
+    ],
+  },
+  {
     company: "Validity Hosting",
     location: "Orlando, FL",
     role: "IT Project Manager",
     dates: "Jul 2021 - Nov 2025",
     bullets: [
-      "Directed end-to-end IT and web infrastructure projects, aligning technology initiatives with organizational strategy while coordinating scope schedule, and budgets across multiple stakeholders.",
-      "Executed the company’s IT roadmap by integrating scalable server infrastructure, automated deployment pipelines, and secure hosting environments optimized for uptime and performance.",
-      "Led a team of 5 contractors in managing system builds, version control, and CI/CD workflows—delivering infrastructure projects 10% under budget on average while maintaining 99.9% service reliability.",
-      "Monitored hosting performance, backups, security controls, and incident response processes.",
+      "Coordinated with two co-founders and contractors to define project scope, schedule, and budget while ensuring clear project tracking and timely reporting.",
+      "Utilized AI-driven project management and workflow automation tools to improve operational efficiency, documentation, task prioritization, and cross-functional collaboration.",
+      "Led a team of 5 contractors, coordinating project scope, schedule, and budget to deliver projects 10% under budget on average.",
+      "Developed and implemented cost-saving DevOps and vendor management strategies, reducing operating expenses by 12% within the first year through workload automation and resource optimization.",
     ],
   },
   {
@@ -129,7 +140,7 @@ const experience = [
     bullets: [
       "Execute subcontract sourcing processes, including RFQ, RFP, PO issuance, BOM reviews, and NDAs, for contracts exceeding $2 million across multiple contract types (FFP, Cost-Plus, T&M).",
       "Engaged in team training on procurement systems, compliance standards, and supplier relationship management.",
-      "Conduct subcontract sourcing for projects exceeding the Truth in Negotiations Act (TINA) threshold ($2M+), ensuring compliance and best-value contracting.",
+      "Conducted subcontract sourcing for projects exceeding the Truth in Negotiations Act (TINA) threshold ($2M+), ensuring compliance and best-value contracting.",
       "Ensure 100% compliance with FAR, DFARS, public law requirements, and company policies, maintaining audit readiness and legal adherence.",
       "Analyzed supplier performance metrics, contributing to a 10% improvement in on-time deliverables through data review and supplier follow-up.",
       "Subcontract sourcing for the F-35 Technology Refresh (TR2 & TR3) initiatives, managing contracts involving complex engineering specifications and high-value procurement.",
@@ -141,10 +152,11 @@ const experience = [
     role: "Project Management Intern",
     dates: "May 2023 - Aug 2023",
     bullets: [
-      "Communicated project scope, schedule, and budget with co-founders and contractors.",
+      "Communicated project scope, schedule, budget, and project risk mitigation strategies with co-founders and contractors to maintain project alignment and operational efficiency.",
       "Developed a custom time clock system, improving contractor time tracking accuracy by 75%.",
       "Delivered a build investment package for a $1,000,000+ motel deal, contacted investors, and sent project status reports for management, clients, and stakeholders.",
       "Coordinated 15+ meetings with stakeholders to maintain project alignment and clear communication.",
+
     ],
   },
   {
@@ -229,8 +241,8 @@ const hasEducation =
 
 const currentFocus = {
   projects: [],
-  languages: ["Python", "NextJS", "Jira", "Microsoft Project", "CodeX", "AI Prompting"],
-  certifications: ["CAPM"],
+  languages: ["Python", "NextJS", "Claude Code"],
+  certifications: ["CAPM - In Progress"],
 };
 
 const skillGroups = [
@@ -238,7 +250,7 @@ const skillGroups = [
     key: "tech",
     label: "Tech skills",
     variant: "accent" as const,
-    items: ["ERP", "SAP", "Data analysis", "SQL", "HTML", "CSS", "PHP", "Computer Architecture Design (IT)"],
+    items: ["ERP", "SAP", "Data analysis", "SQL", "HTML", "CSS", "PHP", "Computer Architecture Design (IT)", "Microsoft Office Suite", "Microsoft Teams", "Microsoft Sharepoint", "Microsoft Powerpoint", "Microsoft Word", "Trello", "WordPress", "GitHub", "Canva", "Adobe Photoshop", "Adobe Lightroom", "AI Prompting", "Jira", "Microsoft Project", "CodeX", "Claude Code"],
   },
   {
     key: "hard",
@@ -275,6 +287,7 @@ const tools = [
 ];
 
 const certifications = [
+  "CAPM (Certified Associate in Project Management) - Progress",
   "Talking to AI: Prompt Engineering for Project Managers",
   "AI Pair Programming with GitHub Copilot",
   "Six Sigma Yellow Belt",
