@@ -124,7 +124,7 @@ const experience = [
     company: "Validity Hosting",
     location: "Orlando, FL",
     role: "IT Project Manager",
-    dates: "Jul 2021 - Nov 2025",
+    dates: "July 2021 - June 2025",
     bullets: [
       "Coordinated with two co-founders and contractors to define project scope, schedule, and budget while ensuring clear project tracking and timely reporting.",
       "Utilized AI-driven project management and workflow automation tools to improve operational efficiency, documentation, task prioritization, and cross-functional collaboration.",
@@ -136,7 +136,7 @@ const experience = [
     company: "L3Harris Technologies",
     location: "Malabar, FL",
     role: "Subcontractor Intern",
-    dates: "Jun 2025 - Aug 2025",
+    dates: "June 2025 - August 2025",
     bullets: [
       "Execute subcontract sourcing processes, including RFQ, RFP, PO issuance, BOM reviews, and NDAs, for contracts exceeding $2 million across multiple contract types (FFP, Cost-Plus, T&M).",
       "Engaged in team training on procurement systems, compliance standards, and supplier relationship management.",
@@ -150,7 +150,7 @@ const experience = [
     company: "Tilton Legacy",
     location: "Winter Park, FL",
     role: "Project Management Intern",
-    dates: "May 2023 - Aug 2023",
+    dates: "May 2023 - August 2023",
     bullets: [
       "Communicated project scope, schedule, budget, and project risk mitigation strategies with co-founders and contractors to maintain project alignment and operational efficiency.",
       "Developed a custom time clock system, improving contractor time tracking accuracy by 75%.",
@@ -202,7 +202,7 @@ const leadershipSecondary = [
       "Documented processes, procedures, and transition materials to support knowledge transfer for incoming leadership.",
       "Managed new member onboarding and tracked required safety forms before members were cleared to work on the car.",
       "Assisted with sponsorship outreach, partner communication, and event promotion to support team funding and visibility.",
-      "Built and maintained the team’s WordPress website to strengthen sponsor visibility, recruitment, and brand presence.",
+      "Built and maintained the team’s WordPress website to strengthen sponsorship visibility, recruitment, and brand presence.",
       "Supported leadership with budgeting preparation and organizational planning for the following competition season.",
     ],
   },
@@ -250,13 +250,13 @@ const skillGroups = [
     key: "tech",
     label: "Tech skills",
     variant: "accent" as const,
-    items: ["ERP", "SAP", "Data analysis", "SQL", "HTML", "CSS", "PHP", "Computer Architecture Design (IT)", "Microsoft Office Suite", "Microsoft Teams", "Microsoft Sharepoint", "Microsoft Powerpoint", "Microsoft Word", "Trello", "WordPress", "GitHub", "Canva", "Adobe Photoshop", "Adobe Lightroom", "AI Prompting", "Jira", "Microsoft Project", "CodeX", "Claude Code"],
+    items: ["ERP (Control Cincom)", "SAP (Control Cincom)", "Data analysis", "SQL", "HTML", "CSS", "PHP", "Computer Architecture Design (IT)", "Microsoft Office Suite", "Microsoft Teams", "Microsoft Sharepoint", "Microsoft Powerpoint", "Microsoft Word", "Trello", "WordPress", "GitHub", "Canva", "Adobe Photoshop", "Adobe Lightroom", "AI Prompting", "Jira", "Microsoft Project", "CodeX", "Claude Code"],
   },
   {
     key: "hard",
     label: "Hard skills",
     variant: "brand" as const,
-    items: ["IT Project management","Procurement / Subcontract Sourcing","KPI Dashboards", "Supply Chain Analytics", "FAR / DFARS Compliance"],
+    items: ["IT Project Management","Procurement / Subcontract Sourcing","KPI Dashboards", "Supply Chain Analytics", "FAR / DFARS Compliance"],
   },
   {
     key: "soft",
@@ -269,15 +269,17 @@ const skillGroups = [
 const skills = skillGroups.flatMap((group) => group.items);
 
 const tools = [
-  { label: "SAP", variant: "neutral" as const },
-  { label: "ERP", variant: "neutral" as const },
+  { label: "SAP (Control Cincom)", variant: "neutral" as const },
+  { label: "ERP (Control Cincom)", variant: "neutral" as const },
   { label: "Microsoft Excel", variant: "neutral" as const },
   { label: "Microsoft Teams", variant: "neutral" as const },
-  { label: "Micrsoft Outlook", variant: "neutral" as const },
+  { label: "Microsoft Outlook", variant: "neutral" as const },
   { label: "Microsoft Sharepoint", variant: "neutral" as const },
   { label: "Microsoft Powerpoint", variant: "neutral" as const },
   { label: "Microsoft Word", variant: "neutral" as const },
-  { label: "Microsoft ", variant: "neutral" as const },
+  { label: "Microsoft 365", variant: "neutral" as const },
+  { label: "Microsoft Power BI", variant: "neutral" as const },
+  { label: "Tableau", variant: "neutral" as const },
   { label: "Trello", variant: "neutral" as const },
   { label: "WordPress", variant: "neutral" as const },
   { label: "GitHub", variant: "neutral" as const },
