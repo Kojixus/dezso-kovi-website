@@ -250,7 +250,7 @@ const skillGroups = [
     key: "tech",
     label: "Tech skills",
     variant: "accent" as const,
-    items: ["ERP (Control Cincom)", "SAP (Control Cincom)", "Data analysis", "SQL", "HTML", "CSS", "PHP", "Computer Architecture Design (IT)", "Microsoft Office Suite", "Microsoft Teams", "Microsoft Sharepoint", "Microsoft Powerpoint", "Microsoft Word", "Trello", "WordPress", "GitHub", "Canva", "Adobe Photoshop", "Adobe Lightroom", "AI Prompting", "Jira", "Microsoft Project", "CodeX", "Claude Code"],
+    items: ["ERP (Control Cincom)", "SAP (Control Cincom)", "Data analysis", "SQL", "HTML", "CSS", "PHP", "Computer Architecture Design (IT)", "Microsoft Office Suite", "Microsoft Teams", "Microsoft Sharepoint", "Microsoft Powerpoint", "Microsoft Word", "Trello", "WordPress", "GitHub", "Canva", "Adobe Photoshop", "Adobe Lightroom", "AI Prompting", "Jira", "Microsoft Project", "Chat CodeX", "Claude Code"],
   },
   {
     key: "hard",

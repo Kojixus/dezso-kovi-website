@@ -5,11 +5,13 @@ type ExperienceRole = {company: string;location: string;role: string;dates: stri
 type ExperienceTimelineProps = {roles: ExperienceRole[];};
 export default function ExperienceTimeline({ roles }: ExperienceTimelineProps) {
   return (
-    <Flex direction="column" gap="24"> {roles.map((role, index) => (<Flex key={role.role} direction="row" gap="16" align="start">
-          <Flex minWidth="32" minHeight="32" maxWidth="32" maxHeight="32" radius="full" background="surface" border="neutral-strong" center>
+    <Flex direction="column" gap="24"> {roles.map((role, index) => {
+      const isCurrent = role.dates.includes("Present");
+      return (<Flex key={role.role} direction="row" gap="16" align="start">
+          <Flex minWidth="32" minHeight="32" maxWidth="32" maxHeight="32" radius="full" background="surface" border={isCurrent ? "accent-strong" : "neutral-strong"} center>
             <Text variant="label-default-s">{index + 1}</Text>
           </Flex>
-          <Flex direction="column" gap="8" fillWidth>
+          <Flex direction="column" gap="8" fillWidth className={isCurrent ? "timeline-current" : undefined}>
             <Flex direction="column" gap="2">
               <Text variant="label-default-m">{role.role}</Text>
               <Text variant="label-default-s" onBackground="neutral-medium">{role.company}</Text>
@@ -21,7 +23,8 @@ export default function ExperienceTimeline({ roles }: ExperienceTimelineProps) {
             </List>
           </Flex>
         </Flex>
-      ))}
+      );
+    })}
     </Flex>
   );
 }
