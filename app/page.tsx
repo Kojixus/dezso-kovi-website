@@ -121,18 +121,6 @@ const experience = [
     ],
   },
   {
-    company: "Validity Hosting",
-    location: "Orlando, FL",
-    role: "IT Project Manager",
-    dates: "July 2021 - June 2025",
-    bullets: [
-      "Coordinated with two co-founders and contractors to define project scope, schedule, and budget while ensuring clear project tracking and timely reporting.",
-      "Utilized AI-driven project management and workflow automation tools to improve operational efficiency, documentation, task prioritization, and cross-functional collaboration.",
-      "Led a team of 5 contractors, coordinating project scope, schedule, and budget to deliver projects 10% under budget on average.",
-      "Developed and implemented cost-saving DevOps and vendor management strategies, reducing operating expenses by 12% within the first year through workload automation and resource optimization.",
-    ],
-  },
-  {
     company: "L3Harris Technologies",
     location: "Malabar, FL",
     role: "Subcontractor Intern",
@@ -144,6 +132,18 @@ const experience = [
       "Ensure 100% compliance with FAR, DFARS, public law requirements, and company policies, maintaining audit readiness and legal adherence.",
       "Analyzed supplier performance metrics, contributing to a 10% improvement in on-time deliverables through data review and supplier follow-up.",
       "Subcontract sourcing for the F-35 Technology Refresh (TR2 & TR3) initiatives, managing contracts involving complex engineering specifications and high-value procurement.",
+    ],
+  },
+  {
+    company: "Validity Hosting",
+    location: "Orlando, FL",
+    role: "IT Project Manager",
+    dates: "July 2021 - June 2025",
+    bullets: [
+      "Coordinated with two co-founders and contractors to define project scope, schedule, and budget while ensuring clear project tracking and timely reporting.",
+      "Utilized AI-driven project management and workflow automation tools to improve operational efficiency, documentation, task prioritization, and cross-functional collaboration.",
+      "Led a team of 5 contractors, coordinating project scope, schedule, and budget to deliver projects 10% under budget on average.",
+      "Developed and implemented cost-saving DevOps and vendor management strategies, reducing operating expenses by 12% within the first year through workload automation and resource optimization.",
     ],
   },
   {
