@@ -116,9 +116,9 @@ const experience = [
     dates: "March 2026 - Present",
     bullets: [
       "Documented current state processes and future state requirements across six operational areas, for a replacement WMS.",
-      "Built a Excel model, using XLOOPUP, SUMIFS, COUNTIFD, PIVOTABELS and array formulas to profile 18,000 SKU and 11,000 pick locations.",
-      "Analyzed 800,000 rows of ERP (Prophet 21) order, production, transder, inventory and item master data for distribution center operations.",
-      "Built a storage capacity model from rack specfication, compared usable cubic feet to on hand inventory."
+      "Built a Excel model, using XLOOKUP, SUMIFS, COUNTIFD, PivotTables and array formulas to profile 18,000 SKU and 11,000 pick locations.",
+      "Analyzed 800,000 rows of ERP (Prophet 21) order, production, transfer, inventory and item master data for distribution center operations.",
+      "Built a storage capacity model from specfications, compared usable cubic feet to on hand inventory."
     ],
   },
   {
