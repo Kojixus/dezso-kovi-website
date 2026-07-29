@@ -112,12 +112,13 @@ const experience = [
   {
     company: "Radix Consulting Alliance",
     location: "Remote",
-    role: "Data Analyst Contractor",
+    role: "Data Analyst",
     dates: "March 2026 - Present",
     bullets: [
-      "Conducted large-scale data analysis for distribution center clients, surfacing operational insights.",
-      "Performed data analysis on 1M+ client records within distribution centers and warehousing environments.",
-      "Analyzed 1M+ records across distribution center client datasets to support warehousing operations.",
+      "Documented current state processes and future state requirements across six operational areas, for a replacement WMS.",
+      "Built a Excel model, using XLOOPUP, SUMIFS, COUNTIFD, PIVOTABELS and array formulas to profile 18,000 SKU and 11,000 pick locations.",
+      "Analyzed 800,000 rows of ERP (Prophet 21) order, production, transder, inventory and item master data for distribution center operations.",
+      "Built a storage capacity model from rack specfication, compared usable cubic feet to on hand inventory."
     ],
   },
   {
