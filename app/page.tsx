@@ -43,7 +43,7 @@ const contact = {
 };
 
 const summary =
-  "Recent graduate with project management and supply chain experience in subcontract sourcing, procurement, and business operations. Experience in ERP systems, data analysis, and cross-functional collaboration to drive efficiency and cost savings. Eager to contribute value and grow as a dedicated team member in a dynamic organization.";
+  "Recent graduate with project management and supply chain experience in subcontract sourcing, procurement, and business operations. Experience in ERP systems, data analysis, and cross-functional collaboration to drive efficiency and cost savings. Eager to contribute value and grow as a dedicated team member in a dynamic organization. Skilled leadership as an RSO Officer for the Knights Racing Formula SAE program.";
 
 const highlights = [
   {
@@ -57,14 +57,14 @@ const highlights = [
     icon: "radialGauge",
     title: "Procurement",
     description:
-      "Execute subcontract sourcing processes, including RFQ, RFP, PO issuance, BOM reviews, and NDAs, for contracts exceeding $2 million across multiple contract types (FFP, Cost-Plus, T&M).",
+      "Executed subcontract sourcing processes, including RFQ, RFP, PO issuance, BOM reviews, and NDAs, for contracts exceeding $2 million across multiple contract types (FFP, Cost-Plus, T&M).",
     tag: "Supply chain",
   },
   {
     icon: "computer",
     title: "Data Analytics",
     description:
-      "Analyzed transportation and inventory data to identify trends, reduce shipping costs by 15%, and improve delivery performance across regional distribution centers.",
+      "Analyzed 800,000 rows of ERP (Prophet 21) order, production, transfer, inventory, and item master data for distribution center operations, profiling 18,000 SKUs and 11,000 pick locations to surface capacity and efficiency gains.",
     tag: "Data measuring",
   },
 ];
@@ -115,10 +115,10 @@ const experience = [
     role: "Data Analyst",
     dates: "March 2026 - Present",
     bullets: [
-      "Built a storage capacity model comparing usable cubic feet against on-hand inventory, identifying 20% underutilized space through heat mapping analysis.",
-      "Analyzed 800,000 rows of ERP (Prophet 21) data across orders, production, transfers, and inventory to surface operational bottlenecks for distribution center optimization.",
-      "Built an Excel model using XLOOKUP, SUMIFS, COUNTIFS, PivotTables, and array formulas to profile 18,000 SKUs and 11,000 pick locations.",
-      "Documented current state processes and defined future state requirements across six operational areas to support WMS replacement decision-making."
+      "Built a storage capacity model comparing usable cubic feet against on-hand inventory, identifying 205 underutilized spaces through heat mapping analysis.",
+      "Analyzed 800,000 rows of ERP (Prophet 21) order, production, transfer, inventory, and item master data for distribution center operations.",
+      "Constructed an Excel model using XLOOKUP, SUMIFS, COUNTIFS, PivotTables, and array formulas to profile 18,000 SKUs and 11,000 pick locations.",
+      "Documented current state processes and future state requirements across six operational areas for a replacement WMS."
     ],
   },
   {
@@ -127,12 +127,12 @@ const experience = [
     role: "Subcontractor Intern",
     dates: "June 2025 - August 2025",
     bullets: [
-      "Execute subcontract sourcing processes, including RFQ, RFP, PO issuance, BOM reviews, and NDAs, for contracts exceeding $2 million across multiple contract types (FFP, Cost-Plus, T&M).",
+      "Executed subcontract sourcing processes, including RFQ, RFP, PO issuance, BOM reviews, and NDAs, for contracts exceeding $2 million across multiple contract types (FFP, Cost-Plus, T&M).",
       "Engaged in team training on procurement systems, compliance standards, and supplier relationship management.",
       "Conducted subcontract sourcing for projects exceeding the Truth in Negotiations Act (TINA) threshold ($2M+), ensuring compliance and best-value contracting.",
-      "Ensure 100% compliance with FAR, DFARS, public law requirements, and company policies, maintaining audit readiness and legal adherence.",
-      "Analyzed supplier performance metrics, contributing to a 10% improvement in on-time deliverables through data review and supplier follow-up.",
-      "Subcontract sourcing for the F-35 Technology Refresh (TR2 & TR3) initiatives, managing contracts involving complex engineering specifications and high-value procurement.",
+      "Ensured 100% compliance with FAR, DFARS, public law requirements, company policies, government audit readiness, and legal adherence.",
+      "Analyzed supplier performance metrics, contributing to a 10% improvement in on-time deliverables.",
+      "Provided sourcing for the F-35 Technology Refresh (TR2 & TR3) initiatives, managing contracts involving complex engineering specifications and high-value procurement.",
     ],
   },
   {
@@ -141,7 +141,7 @@ const experience = [
     role: "IT Project Manager",
     dates: "July 2021 - June 2025",
     bullets: [
-      "Coordinated with two co-founders and contractors to define project scope, schedule, and budget while ensuring clear project tracking and timely reporting.",
+      "Defined project scope, schedule, and budget with co-founders and contractors, ensuring tracking and reporting across 5 projects.",
       "Utilized AI-driven project management and workflow automation tools to improve operational efficiency, documentation, task prioritization, and cross-functional collaboration.",
       "Led a team of 5 contractors, coordinating project scope, schedule, and budget to deliver projects 10% under budget on average.",
       "Developed and implemented cost-saving DevOps and vendor management strategies, reducing operating expenses by 12% within the first year through workload automation and resource optimization.",
@@ -153,11 +153,10 @@ const experience = [
     role: "Project Management Intern",
     dates: "May 2023 - August 2023",
     bullets: [
-      "Communicated project scope, schedule, budget, and project risk mitigation strategies with co-founders and contractors to maintain project alignment and operational efficiency.",
+      "Communicated project scope, schedule, budget, and project risk mitigation strategies with co-founders and contractors to ensure project alignment and operational efficiency.",
       "Developed a custom time clock system, improving contractor time tracking accuracy by 75%.",
       "Delivered a build investment package for a $1,000,000+ motel deal, contacted investors, and sent project status reports for management, clients, and stakeholders.",
-      "Coordinated 15+ meetings with stakeholders to maintain project alignment and clear communication.",
-
+      "Coordinated stakeholder meetings to maintain project alignment and clear communication.",
     ],
   },
   {
@@ -223,7 +222,8 @@ const education = [
   {
     school: "University of Central Florida",
     location: "Orlando, FL",
-    degree: "B.S.B.A Business Administration, Integrated Business",
+    degree: "Bachelor of Science in Business Administration, Integrated Business",
+    dates: "January 2021 - August 2025",
   },
 ];
 
@@ -251,7 +251,7 @@ const skillGroups = [
     key: "tech",
     label: "Tech skills",
     variant: "accent" as const,
-    items: ["ERP (Control Cincom)", "SAP (Control Cincom)", "Data analysis", "SQL", "HTML", "CSS", "PHP", "Computer Architecture Design (IT)", "Microsoft Office Suite", "Microsoft Teams", "Microsoft Sharepoint", "Microsoft Powerpoint", "Microsoft Word", "Trello", "WordPress", "GitHub", "Canva", "Adobe Photoshop", "Adobe Lightroom", "AI Prompting", "Jira", "Microsoft Project", "Chat CodeX", "Claude Code"],
+    items: ["ERP (Control Cincom)", "ERP (Prophet 21)", "SAP (Control Cincom)", "Data analysis", "SQL", "HTML", "CSS", "PHP", "Computer Architecture Design (IT)", "Tableau", "Power BI", "Microsoft Office Suite", "Microsoft Excel", "Microsoft Teams", "Microsoft Outlook", "Microsoft Sharepoint", "Microsoft Powerpoint", "Microsoft Word", "Microsoft OneNote", "Trello", "WordPress", "GitHub", "Canva", "Adobe Photoshop", "Adobe Lightroom", "AI Prompting", "Jira", "Microsoft Project", "AI Codex", "Anthropic Claude AI"],
   },
   {
     key: "hard",
@@ -263,7 +263,7 @@ const skillGroups = [
     key: "soft",
     label: "Soft skills",
     variant: "neutral" as const,
-    items: ["Cross-Functional collaboration", "Communication", "Presentation", "Leaderhsip", "Problem-solving", "Organization", "Adaptability", "Attention to Detail", "Relationship Building"],
+    items: ["Cross-Functional collaboration", "Communication", "Presentation", "Leadership", "Problem-solving", "Organization", "Adaptability", "Attention to Detail", "Relationship Building"],
   },
 ];
 
@@ -272,15 +272,18 @@ const skills = skillGroups.flatMap((group) => group.items);
 const tools = [
   { label: "SAP (Control Cincom)", variant: "neutral" as const },
   { label: "ERP (Control Cincom)", variant: "neutral" as const },
+  { label: "ERP (Prophet 21)", variant: "neutral" as const },
   { label: "Microsoft Excel", variant: "neutral" as const },
   { label: "Microsoft Teams", variant: "neutral" as const },
   { label: "Microsoft Outlook", variant: "neutral" as const },
   { label: "Microsoft Sharepoint", variant: "neutral" as const },
   { label: "Microsoft Powerpoint", variant: "neutral" as const },
   { label: "Microsoft Word", variant: "neutral" as const },
+  { label: "Microsoft OneNote", variant: "neutral" as const },
   { label: "Microsoft 365", variant: "neutral" as const },
   { label: "Microsoft Power BI", variant: "neutral" as const },
   { label: "Tableau", variant: "neutral" as const },
+  { label: "Jira", variant: "neutral" as const },
   { label: "Trello", variant: "neutral" as const },
   { label: "WordPress", variant: "neutral" as const },
   { label: "GitHub", variant: "neutral" as const },
@@ -290,16 +293,17 @@ const tools = [
 ];
 
 const certifications = [
-  "CAPM (Certified Associate in Project Management) - Progress",
+  "CAPM (Certified Associate in Project Management) - In Progress",
+  "Google IT Support Professional Certificate Specialization",
+  "Google Introduction to Project Management",
+  "Six Sigma Yellow Belt",
   "Talking to AI: Prompt Engineering for Project Managers",
   "AI Pair Programming with GitHub Copilot",
-  "Six Sigma Yellow Belt",
   "TestOut IT Fundamentals Pro",
   "Sustainability Strategies (2016)",
   "AWS Certified Database Specialty (DBS-C01) Cert Prep: 1 Introduction and Services",
   "PowerPoint Essential Training (Microsoft 365)",
   "Excel Spreadsheet Design: Extreme Makeover",
-  "Google IT Support Professional Certificate Specialization",
 ];
 
 async function getRepos(): Promise<Repo[]> {
@@ -654,7 +658,7 @@ export default async function Home() {
                         variant="label-default-s"
                         onBackground="neutral-medium"
                       >
-                        {item.location}
+                        {item.location} - {item.dates}
                       </Text>
                     </Flex>
                   ))}
