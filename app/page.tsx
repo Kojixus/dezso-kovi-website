@@ -115,10 +115,10 @@ const experience = [
     role: "Data Analyst",
     dates: "March 2026 - Present",
     bullets: [
-      "Documented current state processes and future state requirements across six operational areas, for a replacement WMS.",
-      "Built a Excel model, using XLOOKUP, SUMIFS, COUNTIFD, PivotTables and array formulas to profile 18,000 SKU and 11,000 pick locations.",
-      "Analyzed 800,000 rows of ERP (Prophet 21) order, production, transfer, inventory and item master data for distribution center operations.",
-      "Built a storage capacity model from specfications, compared usable cubic feet to on hand inventory."
+      "Built a storage capacity model comparing usable cubic feet against on-hand inventory, identifying 20% underutilized space through heat mapping analysis.",
+      "Analyzed 800,000 rows of ERP (Prophet 21) data across orders, production, transfers, and inventory to surface operational bottlenecks for distribution center optimization.",
+      "Built an Excel model using XLOOKUP, SUMIFS, COUNTIFS, PivotTables, and array formulas to profile 18,000 SKUs and 11,000 pick locations.",
+      "Documented current state processes and defined future state requirements across six operational areas to support WMS replacement decision-making."
     ],
   },
   {
