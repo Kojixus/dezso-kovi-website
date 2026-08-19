@@ -45,7 +45,7 @@ export const projects: Project[] = [
     blocks: [
       {
         kind: "text",
-        body: "Launch capacity is the bottleneck in the American space industry. Pads in Florida and Texas are at capacity, many were built only for large vehicles rather than the smaller ones now flying, and the resulting wait runs 12 to 18 months. This plan covers building new launch pads and the ground infrastructure around them, against a notional $350 million budget and a fixed completion date.",
+        body: "Launch capacity is the bottleneck in the American space industry. Pads in Florida and Texas are at capacity, many were built only for large rockets rather than the smaller ones now flying, and the resulting wait runs 12 to 18 months. This plan covers building new launch pads and the ground infrastructure around them, against a notional $350 million budget and a fixed completion date.",
       },
       {
         kind: "list",
@@ -62,11 +62,15 @@ export const projects: Project[] = [
       },
       {
         kind: "text",
-        body: "I was project lead, and I wrote 17 sections of the plan, more than anyone else on the team of six. That included the scope statement and exclusions, the goals and objectives, the deliverables list, the success criteria, the priority matrix, the WBS and its chart, the network diagram, human resource allocation, and the time phased budget table.",
+        body: "I was project lead on a team of six. My sections covered the scope statement and exclusions, the goals and objectives, the deliverables list, the success criteria, the priority matrix, the WBS and its chart, the network diagram, human resource allocation, and the time phased budget table.",
       },
       {
         kind: "text",
-        body: "The success criteria were written to be checkable rather than aspirational: finish by a fixed date, stay within 10% of budget, obtain FAA, EPA, and OSHA approvals, demonstrate capability by launching three vehicles of different classes within 60 days, and pass inspection with zero critical defects.",
+        body: "A lot of the technical detail was outside what a business student should be inventing on his own. Rocket weights, flame trench and water cooling requirements, the fuel types worth planning storage around. I took those questions to friends in the Aerospace and Mechanical Engineering programs and checked the specifications with them before they went into the plan.",
+      },
+      {
+        kind: "text",
+        body: "The success criteria were written to be checkable rather than aspirational: finish by a fixed date, stay within 10% of budget, obtain FAA, EPA, and OSHA approvals, demonstrate capability by launching three rockets of different classes within 60 days, and pass inspection with zero critical defects.",
       },
       {
         kind: "text",
