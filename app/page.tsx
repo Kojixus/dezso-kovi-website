@@ -1,19 +1,8 @@
+import Link from "next/link";
 import ExperienceTimeline from "./components/ExperienceTimeline";
-
-type Repo = {
-  id: number;
-  name: string;
-  html_url: string;
-  updated_at: string;
-  fork: boolean;
-  archived: boolean;
-  private: boolean;
-  description: string | null;
-  language: string | null;
-};
+import { projects } from "./projects";
 
 const githubUser = "Kojixus";
-const githubApiUrl = `https://api.github.com/users/${githubUser}/repos?per_page=100&sort=updated`;
 
 const contact = {
   name: "Dezso Kovi",
@@ -25,16 +14,19 @@ const contact = {
   github: `https://github.com/${githubUser}`,
 };
 
-const intro =
-  "I work where project management meets supply chain — subcontract sourcing, procurement, and business operations. Most of my time goes into ERP systems and spreadsheets, turning messy operational data into decisions people can actually act on.";
-
-const introSecondary =
-  "Right now that means modeling warehouse capacity against 800,000 rows of Prophet 21 data. Before this I sourced subcontracts above the TINA threshold at L3Harris under FAR and DFARS, and spent four years running IT projects and contractor teams at Validity Hosting.";
+const about = [
+  "I work at the point where project management meets supply chain. In practice that means subcontract sourcing, procurement, and the business operations holding both of them together.",
+  "Most of my day happens inside ERP systems and spreadsheets. Right now I am modeling warehouse storage capacity against 800,000 rows of Prophet 21 data, profiling 18,000 SKUs and 11,000 pick locations to find space a distribution center did not know it had.",
+  "Before this I sourced subcontracts above the TINA threshold at L3Harris, working under FAR and DFARS on F-35 Technology Refresh contracts. For four years before that I ran IT projects and a team of five contractors at Validity Hosting, delivering an average of 10% under budget.",
+  "I graduated from UCF in 2025 with a B.S. in Business Administration, and I am working toward the CAPM. Based in Orlando, FL, and a dual citizen of the US and Canada.",
+];
 
 const nav = [
   { id: "about", label: "About" },
   { id: "experience", label: "Experience" },
   { id: "leadership", label: "Leadership" },
+  { id: "education", label: "Education" },
+  { id: "coursework", label: "Coursework" },
   { id: "projects", label: "Projects" },
   { id: "skills", label: "Skills" },
 ];
@@ -105,7 +97,7 @@ const experience = [
 
 const leadership = [
   {
-    org: "University of Central Florida - Project Management",
+    org: "University of Central Florida, Project Management",
     title: "Aerospace Transport, Project Lead",
     dates: "January 2025 - May 2025",
     bullets: [
@@ -142,14 +134,30 @@ const education = {
   location: "Orlando, FL",
   degree: "B.S. Business Administration, Integrated Business",
   dates: "January 2021 - August 2025",
-  coursework: [
-    "Project Management",
-    "Supply Chain & Operations Management",
-    "Management Information Systems",
-    "Intro to Programming with C",
-    "Computer Architecture Concepts",
-  ],
 };
+
+const coursework = [
+  {
+    title: "Project Management",
+    note: "Scope, WBS, CPM scheduling, budgeting, and risk planning. The basis for the Aerospace Transport project lead work.",
+  },
+  {
+    title: "Supply Chain & Operations Management",
+    note: "Inventory, logistics, and operations planning across a distribution network.",
+  },
+  {
+    title: "Management Information Systems",
+    note: "How ERP and business systems fit together, and where the data behind them actually lives.",
+  },
+  {
+    title: "Intro to Programming with C",
+    note: "Fundamentals of programming, control flow, and memory.",
+  },
+  {
+    title: "Computer Architecture Concepts",
+    note: "How hardware executes instructions, and why performance behaves the way it does.",
+  },
+];
 
 const skillGroups = [
   {
@@ -207,7 +215,7 @@ const certifications = [
   "Google Introduction to Project Management",
   "Six Sigma Yellow Belt",
   "Anthropic AI Framework",
-  "CAPM - In progress",
+  "CAPM, in progress",
 ];
 
 const coursesTaken = [
@@ -220,28 +228,7 @@ const coursesTaken = [
   "Sustainability Strategies",
 ];
 
-async function getRepos(): Promise<Repo[]> {
-  try {
-    const res = await fetch(githubApiUrl, { next: { revalidate: 3600 } });
-    if (!res.ok) {
-      return [];
-    }
-    const data = (await res.json()) as Repo[];
-    return data.filter((repo) => !repo.fork && !repo.archived && !repo.private);
-  } catch {
-    return [];
-  }
-}
-
-export default async function Home() {
-  const repos = await getRepos();
-  const visibleRepos = [...repos]
-    .sort(
-      (a, b) =>
-        new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime(),
-    )
-    .slice(0, 4);
-
+export default function Home() {
   return (
     <div className="page">
       <a className="skip-link" href="#main">
@@ -254,8 +241,8 @@ export default async function Home() {
             <h1 className="rail-name">{contact.name}</h1>
             <p className="rail-role">{contact.role}</p>
             <p className="rail-blurb">
-              Turning operational data into decisions — procurement, logistics,
-              and the systems underneath them.
+              Turning operational data into decisions across procurement,
+              logistics, and the systems underneath them.
             </p>
 
             <nav className="rail-nav" aria-label="Sections">
@@ -292,17 +279,18 @@ export default async function Home() {
 
         <main className="content" id="main">
           <section className="section" id="about" aria-labelledby="about-h">
-            <p className="section-label">01 — About</p>
+            <p className="section-label">
+              <span className="section-num">01</span> About
+            </p>
             <h2 className="section-title" id="about-h">
               What I do
             </h2>
-            <p className="lede">{intro}</p>
-            <p className="body">{introSecondary}</p>
-            <p className="body">
-              I graduated from UCF in 2025 with a B.S. in Business
-              Administration, and I am working toward the CAPM. Based in
-              Orlando, FL, and a dual citizen of the US and Canada.
-            </p>
+            <p className="lede">{about[0]}</p>
+            {about.slice(1).map((paragraph) => (
+              <p className="body" key={paragraph.slice(0, 24)}>
+                {paragraph}
+              </p>
+            ))}
           </section>
 
           <section
@@ -310,7 +298,9 @@ export default async function Home() {
             id="experience"
             aria-labelledby="experience-h"
           >
-            <p className="section-label">02 — Experience</p>
+            <p className="section-label">
+              <span className="section-num">02</span> Experience
+            </p>
             <h2 className="section-title" id="experience-h">
               Where I have worked
             </h2>
@@ -322,7 +312,9 @@ export default async function Home() {
             id="leadership"
             aria-labelledby="leadership-h"
           >
-            <p className="section-label">03 — Leadership</p>
+            <p className="section-label">
+              <span className="section-num">03</span> Leadership
+            </p>
             <h2 className="section-title" id="leadership-h">
               Leading teams and projects
             </h2>
@@ -342,62 +334,96 @@ export default async function Home() {
                 </article>
               ))}
             </div>
-
-            <div className="edu">
-              <h3 className="edu-heading">Education</h3>
-              <article className="entry">
-                <p className="entry-dates">{education.dates}</p>
-                <div className="entry-body">
-                  <h4 className="entry-title">{education.school}</h4>
-                  <p className="entry-org">
-                    {education.degree} · {education.location}
-                  </p>
-                  <ul className="chips">
-                    {education.coursework.map((item) => (
-                      <li key={item}>{item}</li>
-                    ))}
-                  </ul>
-                </div>
-              </article>
-            </div>
           </section>
 
-          <section className="section" id="projects" aria-labelledby="projects-h">
-            <p className="section-label">04 — Projects</p>
+          <section
+            className="section"
+            id="education"
+            aria-labelledby="education-h"
+          >
+            <p className="section-label">
+              <span className="section-num">04</span> Education
+            </p>
+            <h2 className="section-title" id="education-h">
+              University of Central Florida
+            </h2>
+            <article className="entry">
+              <p className="entry-dates">{education.dates}</p>
+              <div className="entry-body">
+                <h3 className="entry-title">{education.degree}</h3>
+                <p className="entry-org">
+                  {education.school} · {education.location}
+                </p>
+              </div>
+            </article>
+          </section>
+
+          <section
+            className="section"
+            id="coursework"
+            aria-labelledby="coursework-h"
+          >
+            <p className="section-label">
+              <span className="section-num">05</span> Coursework
+            </p>
+            <h2 className="section-title" id="coursework-h">
+              Relevant coursework
+            </h2>
+            <p className="body">
+              The classes from my degree that map most directly onto the work I
+              do now.
+            </p>
+            <ul className="course-list">
+              {coursework.map((course) => (
+                <li key={course.title}>
+                  <h3 className="course-title">{course.title}</h3>
+                  <p className="course-note">{course.note}</p>
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <section
+            className="section"
+            id="projects"
+            aria-labelledby="projects-h"
+          >
+            <p className="section-label">
+              <span className="section-num">06</span> Projects
+            </p>
             <h2 className="section-title" id="projects-h">
               Things I have built
             </h2>
             <p className="body">
-              Side projects and site work, pulled live from GitHub.
+              Simulation work, client sites, and coursework. Each one has a
+              write-up with a link to the source.
             </p>
 
-            {visibleRepos.length > 0 ? (
-              <ul className="repo-grid">
-                {visibleRepos.map((repo) => (
-                  <li key={repo.id}>
-                    <a className="repo" href={repo.html_url}>
-                      <span className="repo-name">{repo.name}</span>
-                      {repo.description ? (
-                        <span className="repo-desc">{repo.description}</span>
-                      ) : null}
-                      {repo.language ? (
-                        <span className="repo-lang">{repo.language}</span>
-                      ) : null}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <p className="body">
-                <a className="inline-link" href={contact.github}>
-                  View my repositories on GitHub
-                </a>
-              </p>
-            )}
+            <ul className="project-list">
+              {projects.map((project) => (
+                <li key={project.slug}>
+                  <Link className="project" href={`/projects/${project.slug}`}>
+                    <span className="project-head">
+                      <span className="project-name">{project.title}</span>
+                      <span className="project-year">{project.year}</span>
+                    </span>
+                    <span className="project-tagline">{project.tagline}</span>
+                    <span className="project-stack">
+                      {project.stack.join(" · ")}
+                    </span>
+                    <span className="project-cta" aria-hidden="true">
+                      Read more →
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </section>
 
           <section className="section" id="skills" aria-labelledby="skills-h">
-            <p className="section-label">05 — Skills</p>
+            <p className="section-label">
+              <span className="section-num">07</span> Skills
+            </p>
             <h2 className="section-title" id="skills-h">
               Tools and credentials
             </h2>
@@ -425,7 +451,7 @@ export default async function Home() {
                 </ul>
               </div>
               <div>
-                <h3 className="skill-label">Additional coursework</h3>
+                <h3 className="skill-label">Additional training</h3>
                 <ul className="bullets">
                   {coursesTaken.map((item) => (
                     <li key={item}>{item}</li>
@@ -436,11 +462,13 @@ export default async function Home() {
           </section>
 
           <section className="section section--last" id="contact">
-            <p className="section-label">06 — Contact</p>
+            <p className="section-label">
+              <span className="section-num">08</span> Contact
+            </p>
             <h2 className="section-title">Get in touch</h2>
             <p className="body">
               I am looking for full-time project management, procurement, and
-              supply chain roles — Orlando, remote, or hybrid, and open to
+              supply chain roles in Orlando, remote, or hybrid, and I am open to
               relocation with assistance. The fastest way to reach me is email.
             </p>
             <div className="cta-row">

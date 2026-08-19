@@ -7,11 +7,11 @@ import { SpeedInsights } from "@vercel/speed-insights/next"
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://dezso-kovi-website.vercel.app"),
-  title: "Dezso Kovi — Project Management & Supply Chain",
+  title: "Dezso Kovi | Project Management & Supply Chain",
   description:
     "Project management and supply chain professional in Orlando, FL. Subcontract sourcing, procurement, ERP data analysis, and IT project delivery.",
   openGraph: {
-    title: "Dezso Kovi — Project Management & Supply Chain",
+    title: "Dezso Kovi | Project Management & Supply Chain",
     description:
       "Project management and supply chain professional in Orlando, FL. Subcontract sourcing, procurement, ERP data analysis, and IT project delivery.",
     url: "https://dezso-kovi-website.vercel.app",

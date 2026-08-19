@@ -21,6 +21,10 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: var(--page-background);
   color: var(--ink-mid);
@@ -82,6 +86,9 @@ a {
   flex-direction: column;
   justify-content: space-between;
   gap: 32px;
+  /* The rail is stuck to the viewport, so on short screens its lower half
+     would otherwise sit below the fold with no way to scroll to it. */
+  overflow-y: auto;
 }
 
 .rail-name {
@@ -110,7 +117,7 @@ a {
 }
 
 .rail-nav {
-  margin-top: 56px;
+  margin-top: 40px;
 }
 
 .rail-nav ul,
@@ -208,6 +215,11 @@ a {
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--accent);
+}
+
+.section-num {
+  color: var(--ink-dim);
+  margin-right: 10px;
 }
 
 .section-title {
@@ -374,53 +386,221 @@ a {
   border-top: 1px solid var(--hairline);
 }
 
-/* ---------------------------------------------------------------- repos --- */
+/* ----------------------------------------------------------- coursework --- */
 
-.repo-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
+.course-list {
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--hairline);
+}
+
+.course-list li {
+  padding: 18px 0;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.course-title {
+  margin: 0;
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+
+.course-note {
+  margin: 6px 0 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--ink-mid);
+  max-width: 62ch;
+}
+
+/* ------------------------------------------------------------- projects --- */
+
+.project-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
   margin: 8px 0 0;
   padding: 0;
   list-style: none;
 }
 
-.repo {
+.project {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  height: 100%;
-  padding: 20px;
+  padding: 22px 24px;
   border: 1px solid var(--hairline-strong);
   border-radius: 8px;
   text-decoration: none;
   transition: border-color 180ms ease, background 180ms ease;
 }
 
-.repo:hover {
+.project:hover {
   border-color: var(--accent-line);
   background: var(--neutral-alpha-weak);
 }
 
-.repo-name {
-  font-size: 0.95rem;
+.project-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.project-name {
+  font-size: 1.02rem;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+
+.project-year {
+  flex: none;
+  font-family: var(--font-code), ui-monospace, monospace;
+  font-size: 0.72rem;
+  color: var(--ink-dim);
+}
+
+.project-tagline {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--ink-mid);
+  max-width: 60ch;
+}
+
+.project-stack {
+  font-family: var(--font-code), ui-monospace, monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  color: var(--ink-dim);
+}
+
+.project-cta {
+  margin-top: 4px;
+  font-size: 0.82rem;
+  color: var(--accent);
+}
+
+/* --------------------------------------------------------- project page --- */
+
+.doc {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 72px var(--gutter) 120px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 48px;
+  font-family: var(--font-code), ui-monospace, monospace;
+  font-size: 0.74rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  text-decoration: none;
+  transition: color 160ms ease;
+}
+
+.back-link:hover {
+  color: var(--ink);
+}
+
+.doc-head {
+  padding-bottom: 36px;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.doc-title {
+  margin: 0 0 16px;
+  font-family: var(--font-heading), system-ui, sans-serif;
+  font-size: clamp(2rem, 3.4vw, 2.7rem);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
   font-weight: 600;
   color: var(--ink);
 }
 
-.repo-desc {
-  font-size: 0.88rem;
-  line-height: 1.55;
+.doc-tagline {
+  margin: 0;
+  font-size: 1.06rem;
+  line-height: 1.6;
+  color: var(--ink);
+  max-width: 58ch;
+}
+
+.doc-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px 44px;
+  margin: 32px 0 0;
+}
+
+.doc-meta dt {
+  font-family: var(--font-code), ui-monospace, monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  margin-bottom: 8px;
+}
+
+.doc-meta dd {
+  margin: 0;
+  font-size: 0.9rem;
   color: var(--ink-mid);
 }
 
-.repo-lang {
-  margin-top: auto;
-  padding-top: 4px;
-  font-family: var(--font-code), ui-monospace, monospace;
-  font-size: 0.7rem;
-  letter-spacing: 0.08em;
-  color: var(--ink-dim);
+.doc-meta-wide {
+  flex-basis: 100%;
+}
+
+.doc-body {
+  padding: 40px 0 8px;
+}
+
+.doc-body .body {
+  font-size: 1rem;
+  max-width: 68ch;
+}
+
+.doc-list {
+  margin: 32px 0;
+}
+
+.doc-foot {
+  margin-top: 32px;
+  padding-top: 40px;
+  border-top: 1px solid var(--hairline);
+}
+
+.doc-foot-title {
+  margin: 0 0 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.doc-next {
+  margin-top: 64px;
+  padding-top: 32px;
+  border-top: 1px solid var(--hairline);
+}
+
+.doc-next-link {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: none;
+  transition: color 160ms ease;
+}
+
+.doc-next-link:hover {
+  color: var(--accent);
 }
 
 /* -------------------------------------------------------------- contact --- */
@@ -508,9 +688,21 @@ a {
     margin: 0 0 0 10px;
   }
 
-  .cert-grid,
-  .repo-grid {
+  .cert-grid {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  .project-head {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .doc {
+    padding-top: 48px;
+  }
+
+  .back-link {
+    margin-bottom: 32px;
   }
 
   .section {
@@ -519,7 +711,27 @@ a {
   }
 }
 
+/* Short viewports: tighten the rail so it needs less internal scrolling. */
+@media (min-width: 1021px) and (max-height: 760px) {
+  .rail {
+    padding: 56px 0 32px;
+    gap: 20px;
+  }
+
+  .rail-nav {
+    margin-top: 24px;
+  }
+
+  .rail-blurb {
+    display: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
   * {
     animation: none !important;
     transition: none !important;
