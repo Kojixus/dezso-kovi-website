@@ -1,30 +1,41 @@
-"use client";
+type ExperienceRole = {
+  company: string;
+  location: string;
+  role: string;
+  dates: string;
+  bullets: string[];
+};
 
-import { Flex, List, ListItem, Text } from "@once-ui-system/core";
-type ExperienceRole = {company: string;location: string;role: string;dates: string;bullets: string[];};
-type ExperienceTimelineProps = {roles: ExperienceRole[];};
+type ExperienceTimelineProps = {
+  roles: ExperienceRole[];
+};
+
 export default function ExperienceTimeline({ roles }: ExperienceTimelineProps) {
   return (
-    <Flex direction="column" gap="24"> {roles.map((role, index) => {
-      const isCurrent = role.dates.includes("Present");
-      return (<Flex key={role.role} direction="row" gap="16" align="start">
-          <Flex minWidth="32" minHeight="32" maxWidth="32" maxHeight="32" radius="full" background="surface" border={isCurrent ? "accent-strong" : "neutral-strong"} center>
-            <Text variant="label-default-s">{index + 1}</Text>
-          </Flex>
-          <Flex direction="column" gap="8" fillWidth className={isCurrent ? "timeline-current" : undefined}>
-            <Flex direction="column" gap="2">
-              <Text variant="label-default-m">{role.role}</Text>
-              <Text variant="label-default-s" onBackground="neutral-medium">{role.company}</Text>
-              <Text variant="label-default-s" onBackground="neutral-medium">{role.location} - {role.dates}</Text>
-            </Flex>
-            <List gap="8"> {role.bullets.map((item) => (
-              <ListItem key={item} variant="body-default-s" onBackground="neutral-medium">{item}</ListItem>
-            ))}
-            </List>
-          </Flex>
-        </Flex>
-      );
-    })}
-    </Flex>
+    <div className="entry-list">
+      {roles.map((role) => {
+        const isCurrent = role.dates.includes("Present");
+
+        return (
+          <article className="entry" key={`${role.company}-${role.role}`}>
+            <p className="entry-dates">
+              {role.dates}
+              {isCurrent ? <span className="entry-now">Current</span> : null}
+            </p>
+            <div className="entry-body">
+              <h3 className="entry-title">{role.role}</h3>
+              <p className="entry-org">
+                {role.company} · {role.location}
+              </p>
+              <ul className="bullets">
+                {role.bullets.map((bullet) => (
+                  <li key={bullet}>{bullet}</li>
+                ))}
+              </ul>
+            </div>
+          </article>
+        );
+      })}
+    </div>
   );
 }
