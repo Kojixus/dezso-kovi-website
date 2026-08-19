@@ -60,8 +60,8 @@ export default async function ProjectPage({ params }: PageProps) {
               <dd>{project.year}</dd>
             </div>
             <div>
-              <dt>Repository</dt>
-              <dd>{project.name}</dd>
+              <dt>{project.repo ? "Repository" : "Team"}</dt>
+              <dd>{project.repo ? project.name : "Six students, project lead"}</dd>
             </div>
             <div className="doc-meta-wide">
               <dt>Stack</dt>
@@ -96,16 +96,33 @@ export default async function ProjectPage({ params }: PageProps) {
         </div>
 
         <footer className="doc-foot">
-          <h2 className="doc-foot-title">Source code</h2>
-          <p className="body">
-            The full project, including its documentation and generated output,
-            is on GitHub.
-          </p>
-          <div className="cta-row">
-            <a className="cta" href={project.repo}>
-              View {project.name} on GitHub
-            </a>
-          </div>
+          {project.document ? (
+            <>
+              <h2 className="doc-foot-title">Read the plan</h2>
+              <p className="body">
+                The full plan is available to download and read in full.
+              </p>
+              <div className="cta-row">
+                <a className="cta" href={project.document.href} download>
+                  {project.document.label}
+                </a>
+              </div>
+              <p className="doc-file-meta">{project.document.meta}</p>
+            </>
+          ) : (
+            <>
+              <h2 className="doc-foot-title">Source code</h2>
+              <p className="body">
+                The full project, including its documentation and generated
+                output, is on GitHub.
+              </p>
+              <div className="cta-row">
+                <a className="cta" href={project.repo}>
+                  View {project.name} on GitHub
+                </a>
+              </div>
+            </>
+          )}
 
           <nav className="doc-next" aria-label="More projects">
             <p className="skill-label">Next project</p>

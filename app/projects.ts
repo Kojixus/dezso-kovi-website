@@ -2,6 +2,12 @@ export type ProjectBlock =
   | { kind: "text"; body: string }
   | { kind: "list"; heading: string; items: string[] };
 
+export type ProjectDocument = {
+  href: string;
+  label: string;
+  meta: string;
+};
+
 export type Project = {
   slug: string;
   name: string;
@@ -10,11 +16,64 @@ export type Project = {
   year: string;
   context: string;
   stack: string[];
-  repo: string;
+  repo?: string;
+  document?: ProjectDocument;
   blocks: ProjectBlock[];
 };
 
 export const projects: Project[] = [
+  {
+    slug: "aerospace-transport",
+    name: "Aerospace Transport",
+    title: "Aerospace Transport Project Management Plan",
+    tagline:
+      "A complete project management plan for building rocket launch pads, written as project lead for a team of six.",
+    year: "2025",
+    context: "University of Central Florida, Project Management",
+    stack: [
+      "WBS",
+      "CPM network diagram",
+      "Time phased budget",
+      "Risk matrix",
+      "Communications plan",
+    ],
+    document: {
+      href: "/Aerospace-Transport-Project-Management-Plan.pdf",
+      label: "Download the project management plan",
+      meta: "PDF, 52 pages, 3.1 MB",
+    },
+    blocks: [
+      {
+        kind: "text",
+        body: "Launch capacity is the bottleneck in the American space industry. Pads in Florida and Texas are at capacity, many were built only for large vehicles rather than the smaller ones now flying, and the resulting wait runs 12 to 18 months. This plan covers building new launch pads and the ground infrastructure around them, against a notional $350 million budget and a fixed completion date.",
+      },
+      {
+        kind: "list",
+        heading: "What the plan covers",
+        items: [
+          "A scope statement with goals, objectives, deliverables, and an explicit exclusions section to guard against scope creep.",
+          "A priority matrix ranking time first, scope second, and cost third, so tradeoffs under pressure had a documented answer before anyone needed one.",
+          "A work breakdown structure of seven summary tasks decomposed into 24 work packages, with a numbering system so every element has a reference point.",
+          "Duration estimates, a project network diagram, and the critical path traced through the schedule.",
+          "A cost estimate broken out into labor, material, and equipment for each work package.",
+          "A human resource plan and time phased budget covering 3,610 labor hours across 171 working days.",
+          "A stakeholder register, a communications plan, and a risk matrix scored on probability and impact.",
+        ],
+      },
+      {
+        kind: "text",
+        body: "I was project lead, and I wrote 17 sections of the plan, more than anyone else on the team of six. That included the scope statement and exclusions, the goals and objectives, the deliverables list, the success criteria, the priority matrix, the WBS and its chart, the network diagram, human resource allocation, and the time phased budget table.",
+      },
+      {
+        kind: "text",
+        body: "The success criteria were written to be checkable rather than aspirational: finish by a fixed date, stay within 10% of budget, obtain FAA, EPA, and OSHA approvals, demonstrate capability by launching three vehicles of different classes within 60 days, and pass inspection with zero critical defects.",
+      },
+      {
+        kind: "text",
+        body: "The section I got the most out of was the exclusions. Deciding in writing what the project would not do, rocket manufacturing, ongoing operations, visitor facilities, deep space communications, is what kept the rest of the plan honest. It is the habit I have carried into scoping real work since.",
+      },
+    ],
+  },
   {
     slug: "warehouse-robotics",
     name: "warehouse-robotics",
@@ -38,8 +97,8 @@ export const projects: Project[] = [
         kind: "list",
         heading: "Three workstreams",
         items: [
-          "Pick path optimization: baseline routing compared against nearest-neighbor and zone-batching strategies, scored on Manhattan distance across the grid.",
-          "Slotting and layout: moving fast-moving SKUs into prime locations to raise prime-zone pick share, visualized as before, after, and delta heatmaps.",
+          "Pick path optimization: baseline routing compared against nearest neighbor and zone batching strategies, scored on Manhattan distance across the grid.",
+          "Slotting and layout: moving fast moving SKUs into prime locations to raise prime zone pick share, visualized as before, after, and delta heatmaps.",
           "Operations control: robot utilization, downtime, MTTR, and fault tracking over time, with an alerting layer that flags problems worth acting on.",
         ],
       },
@@ -49,7 +108,7 @@ export const projects: Project[] = [
         items: [
           "Average travel distance per order and total travel distance per day",
           "Prime zone pick share, and distance reduction against baseline",
-          "Expedite SLA risk, modeled as priority-1 orders whose estimated travel exceeds time-to-due",
+          "Expedite SLA risk, modeled as priority 1 orders whose estimated travel exceeds time to due",
           "Robot utilization, downtime, and MTTR",
           "Picks per hour, plus alert rate and how actionable those alerts are",
         ],
@@ -59,14 +118,14 @@ export const projects: Project[] = [
         heading: "What it outputs",
         items: [
           "CSV reports and generated charts for every stage of the pipeline",
-          "An audit-ready evidence pack with a run manifest and evidence index",
+          "An audit ready evidence pack with a run manifest and evidence index",
           "A packaged HTML dashboard collecting the results in one place",
-          "Scenario risk simulation comparing throughput and cycle-time p95 across configurations",
+          "Scenario risk simulation comparing throughput and cycle time p95 across configurations",
         ],
       },
       {
         kind: "text",
-        body: "The code is organized as staged modules under src/ (pick_path, slotting, operations, audit_ready, scenarios, portfolio), each runnable on its own or through a single pipeline entry point. Scenarios are config-driven, every dataset is synthetic and reproducible from a fixed random seed, and the repo runs flake8 and a GitHub Actions workflow on push.",
+        body: "The code is organized as staged modules under src/ (pick_path, slotting, operations, audit_ready, scenarios, portfolio), each runnable on its own or through a single pipeline entry point. Scenarios are config driven, every dataset is synthetic and reproducible from a fixed random seed, and the repo runs flake8 and a GitHub Actions workflow on push.",
       },
       {
         kind: "text",
@@ -87,16 +146,16 @@ export const projects: Project[] = [
     blocks: [
       {
         kind: "text",
-        body: "A site for driver Dylan Dana, built around a hero-focused homepage and a dedicated on-track page for season results. The visual centerpiece is a 3D telemetry panel rendered with three.js, alongside a track reference asset and highlight video cards.",
+        body: "A site for driver Dylan Dana, built around a homepage focused on driver identity and a dedicated page for on track results. The visual centerpiece is a 3D telemetry panel rendered with three.js, alongside a track reference asset and highlight video cards.",
       },
       {
         kind: "list",
         heading: "What it includes",
         items: [
           "A homepage covering driver identity, accomplishments, coaching focus areas, and social links",
-          "An on-track page with season stats, highlight cards, weekend notes, and a race calendar",
-            "A sponsor marquee, plus partner deck and media kit downloads for prospective sponsors",
-          "A 3D telemetry panel and custom loading screen",
+          "A results page with season stats, highlight cards, weekend notes, and a race calendar",
+          "A sponsor marquee, plus partner deck and media kit downloads for prospective sponsors",
+          "A 3D telemetry panel and a custom loading screen",
         ],
       },
       {
@@ -105,7 +164,7 @@ export const projects: Project[] = [
       },
       {
         kind: "text",
-        body: "That decision came from the same instinct as the rest of my work: the handoff matters more than the build. A site that only I can update is a site that goes stale the moment I stop touching it.",
+        body: "That decision came from the same instinct as the rest of my work. The handoff matters more than the build. A site only I can update is a site that goes stale the moment I stop touching it.",
       },
     ],
   },
@@ -122,7 +181,7 @@ export const projects: Project[] = [
     blocks: [
       {
         kind: "text",
-        body: "Built with the Next.js App Router and React Server Components, styled with hand-written CSS over a token-based theme, and deployed on Vercel with analytics and speed insights wired in.",
+        body: "Built with the Next.js App Router and React Server Components, styled with hand written CSS over a token based theme, and deployed on Vercel with analytics and speed insights wired in.",
       },
       {
         kind: "list",
@@ -132,12 +191,12 @@ export const projects: Project[] = [
           "Project pages are generated from a single project data module and prerendered at build time.",
           "Colors come entirely from theme tokens rather than hardcoded hex values, so the design stays correct if the theme changes.",
           "A sticky identity rail on desktop collapses to a stacked layout on smaller screens.",
-          "Accessibility basics are in place: a skip link, visible focus rings, semantic landmarks, and a reduced-motion guard.",
+          "Accessibility basics are in place: a skip link, visible focus rings, semantic landmarks, and a reduced motion guard.",
         ],
       },
       {
         kind: "text",
-        body: "It is also the project I iterate on most often, which makes it a reasonable sample of how I work: small changes, verified in the browser, committed with a message that explains why.",
+        body: "It is also the project I iterate on most often, which makes it a reasonable sample of how I work. Small changes, verified in the browser, committed with a message that explains why.",
       },
     ],
   },
@@ -146,7 +205,7 @@ export const projects: Project[] = [
     name: "UCF-Freshmen-Robot-Project",
     title: "UCF Freshman Robotics Project",
     tagline:
-      "First-year engineering coursework at UCF: embedded C drivers for a line-following robot.",
+      "First year engineering coursework at UCF: embedded C drivers for a line following robot.",
     year: "2019",
     context: "University coursework",
     stack: ["C", "TI MSP432", "Code Composer Studio"],
@@ -160,7 +219,7 @@ export const projects: Project[] = [
         kind: "list",
         heading: "What the code covers",
         items: [
-          "Motor control and quadrature encoder reading for closed-loop movement",
+          "Motor control and quadrature encoder reading for closed loop movement",
           "A reflectance sensor array for line detection and following",
           "Bump sensor handling for collision response",
           "An ambient light sensor (OPT3001) driven over an I2C hardware abstraction layer",
@@ -169,7 +228,7 @@ export const projects: Project[] = [
       },
       {
         kind: "text",
-        body: "This is the oldest thing on the site by six years, and I am keeping it deliberately. It is where the hands-on systems work started, and the habit of reading a datasheet before guessing has been useful in every operations role since.",
+        body: "This is the oldest thing on the site by six years, and I am keeping it deliberately. It is where the hands on systems work started, and the habit of reading a datasheet before guessing has been useful in every operations role since.",
       },
     ],
   },

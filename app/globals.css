@@ -583,6 +583,14 @@ a {
   color: var(--ink);
 }
 
+.doc-file-meta {
+  margin: 14px 0 0;
+  font-family: var(--font-code), ui-monospace, monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  color: var(--ink-dim);
+}
+
 .doc-next {
   margin-top: 64px;
   padding-top: 32px;

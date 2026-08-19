@@ -15,10 +15,10 @@ const contact = {
 };
 
 const about = [
-  "I work at the point where project management meets supply chain. In practice that means subcontract sourcing, procurement, and the business operations holding both of them together.",
-  "Most of my day happens inside ERP systems and spreadsheets. Right now I am modeling warehouse storage capacity against 800,000 rows of Prophet 21 data, profiling 18,000 SKUs and 11,000 pick locations to find space a distribution center did not know it had.",
-  "Before this I sourced subcontracts above the TINA threshold at L3Harris, working under FAR and DFARS on F-35 Technology Refresh contracts. For four years before that I ran IT projects and a team of five contractors at Validity Hosting, delivering an average of 10% under budget.",
-  "I graduated from UCF in 2025 with a B.S. in Business Administration, and I am working toward the CAPM. Based in Orlando, FL, and a dual citizen of the US and Canada.",
+  "I am a project manager working in supply chain. Sourcing, procurement, and the operations side of both.",
+  "Most days I am in an ERP system or in Excel. At Radix I am building a storage capacity model for a distribution center, working through 800,000 rows of Prophet 21 data covering 18,000 SKUs and 11,000 pick locations. It has turned up 205 storage spaces that were sitting unused.",
+  "Before that I spent a summer at L3Harris sourcing subcontracts, including work on the F-35 Technology Refresh. Contracts over the TINA threshold, under FAR and DFARS. Earlier I ran IT projects at Validity Hosting for four years and managed a team of five contractors.",
+  "I finished my degree at UCF in 2025 and I am studying for the CAPM. I live in Orlando and I am a dual citizen of the US and Canada.",
 ];
 
 const nav = [
@@ -36,10 +36,10 @@ const experience = [
     company: "Radix Consulting Alliance",
     location: "Hybrid",
     role: "Data Analyst",
-    dates: "March 2026 - Present",
+    dates: "March 2026 to Present",
     bullets: [
-      "Built a storage capacity model comparing usable cubic feet against on-hand inventory, identifying 205 underutilized spaces through heat mapping analysis.",
-      "Proficient in AI-prompting; analyzing 800,000 rows of ERP (Prophet 21) order, production, transfer, inventory, and item master data for distribution center operations.",
+      "Built a storage capacity model comparing usable cubic feet against on hand inventory, identifying 205 underutilized spaces through heat mapping analysis.",
+      "Proficient in AI prompting; analyzing 800,000 rows of ERP (Prophet 21) order, production, transfer, inventory, and item master data for distribution center operations.",
       "Constructed an Excel model using XLOOKUP, SUMIFS, COUNTIFS, PivotTables, and array formulas to profile 18,000 SKUs and 11,000 pick locations.",
       "Documented current state processes and future state requirements across six operational areas for a replacement WMS.",
     ],
@@ -48,13 +48,13 @@ const experience = [
     company: "L3Harris Technologies",
     location: "Malabar, FL",
     role: "Subcontractor Intern",
-    dates: "June 2025 - August 2025",
+    dates: "June 2025 to August 2025",
     bullets: [
       "Executed subcontract sourcing processes, including RFQ, RFP, PO issuance, BOM reviews, and NDAs, for contracts exceeding $2 million across multiple contract types (FFP, Cost-Plus, T&M).",
-      "Conducted subcontract sourcing for projects exceeding the Truth in Negotiations Act (TINA) threshold ($2M+), ensuring compliance and best-value contracting.",
+      "Conducted subcontract sourcing for projects exceeding the Truth in Negotiations Act (TINA) threshold ($2M+), ensuring compliance and best value contracting.",
       "Ensured 100% compliance with FAR, DFARS, public law requirements, company policies, government audit readiness, and legal adherence.",
-      "Provided sourcing for the F-35 Technology Refresh (TR2 & TR3) initiatives, managing contracts involving complex engineering specifications and high-value procurement.",
-      "Analyzed supplier performance metrics, contributing to a 10% improvement in on-time deliverables.",
+      "Provided sourcing for the F-35 Technology Refresh (TR2 & TR3) initiatives, managing contracts involving complex engineering specifications and high value procurement.",
+      "Analyzed supplier performance metrics, contributing to a 10% improvement in on time deliverables.",
       "Engaged in team training on procurement systems, compliance standards, and supplier relationship management.",
     ],
   },
@@ -62,22 +62,22 @@ const experience = [
     company: "Validity Hosting",
     location: "Orlando, FL",
     role: "IT Project Manager",
-    dates: "July 2021 - June 2025",
+    dates: "July 2021 to June 2025",
     bullets: [
-      "Defined project scope, schedule, and budget with co-founders and contractors, ensuring tracking and reporting across 5 projects.",
+      "Defined project scope, schedule, and budget with cofounders and contractors, ensuring tracking and reporting across 5 projects.",
       "Led a team of 5 contractors, coordinating project scope, schedule, and budget to deliver projects 10% under budget on average.",
-      "Implemented cost-saving DevOps and vendor management strategies, reducing operating expenses by 12% within the first year through workload automation and resource optimization.",
-      "Utilized AI-driven project management and workflow automation tools to improve operational efficiency, documentation, task prioritization, and cross-functional collaboration.",
+      "Implemented cost saving DevOps and vendor management strategies, reducing operating expenses by 12% within the first year through workload automation and resource optimization.",
+      "Utilized AI driven project management and workflow automation tools to improve operational efficiency, documentation, task prioritization, and cross functional collaboration.",
     ],
   },
   {
     company: "Tilton Legacy",
     location: "Winter Park, FL",
     role: "Project Management Intern",
-    dates: "May 2023 - August 2023",
+    dates: "May 2023 to August 2023",
     bullets: [
       "Delivered a build investment package for a $1,000,000+ motel deal, contacted investors, and sent project status reports for management, clients, and stakeholders.",
-      "Communicated project scope, schedule, budget, and project risk mitigation strategies with co-founders and contractors to ensure project alignment and operational efficiency.",
+      "Communicated project scope, schedule, budget, and project risk mitigation strategies with cofounders and contractors to ensure project alignment and operational efficiency.",
       "Coordinated stakeholder meetings to maintain project alignment and clear communication.",
     ],
   },
@@ -85,7 +85,7 @@ const experience = [
     company: "Radix Consulting Alliance",
     location: "West Palm Beach, FL",
     role: "Logistics Analyst",
-    dates: "January 2016 - January 2021",
+    dates: "January 2016 to January 2021",
     bullets: [
       "Analyzed transportation and inventory data to identify trends, reduce shipping costs by 15%, and improve delivery performance across regional distribution centers.",
       "Led monthly analytics reviews with stakeholders, providing actionable recommendations based on logistics data trends.",
@@ -99,17 +99,17 @@ const leadership = [
   {
     org: "University of Central Florida, Project Management",
     title: "Aerospace Transport, Project Lead",
-    dates: "January 2025 - May 2025",
+    dates: "January 2025 to May 2025",
     bullets: [
       "Managed and built the Work Breakdown Structure (WBS) with 24 detailed work packages, enabling clear task ownership and effective progress tracking across all phases.",
       "Constructed a CPM network diagram (ES/EF, LS/LF) and the critical path for schedule control and cost across procurement, logistics, and delivery phases.",
-      "Built a communications plan with weekly status, monthly exec updates, bi-weekly risk issue logging, and compliance reporting.",
+      "Built a communications plan with weekly status, monthly exec updates, biweekly risk issue logging, and compliance reporting.",
     ],
   },
   {
     org: "Knights Racing Formula SAE (UCF)",
     title: "Secretary & Website Developer",
-    dates: "May 2024 - May 2025",
+    dates: "May 2024 to May 2025",
     bullets: [
       "Managed internal documentation, membership records, and leadership coordination for the Formula SAE team as an RSO Officer.",
       "Recorded and distributed meeting minutes across subteams, and documented processes and transition materials for incoming leadership.",
@@ -120,7 +120,7 @@ const leadership = [
   {
     org: "Knights Racing Formula SAE (UCF)",
     title: "Outreach Lead & Website Developer",
-    dates: "September 2023 - May 2024",
+    dates: "September 2023 to May 2024",
     bullets: [
       "Led outreach for the Formula SAE team, supporting sponsor engagement, promotional efforts, and external communications.",
       "Assisted with sponsorship prospecting and relationship management to expand team support and funding.",
@@ -133,7 +133,7 @@ const education = {
   school: "University of Central Florida",
   location: "Orlando, FL",
   degree: "B.S. Business Administration, Integrated Business",
-  dates: "January 2021 - August 2025",
+  dates: "January 2021 to August 2025",
 };
 
 const coursework = [
@@ -151,11 +151,11 @@ const coursework = [
   },
   {
     title: "Intro to Programming with C",
-    note: "Fundamentals of programming, control flow, and memory.",
+    note: "Fundamentals of programming with C.",
   },
   {
     title: "Computer Architecture Concepts",
-    note: "How hardware executes instructions, and why performance behaves the way it does.",
+    note: "Learned how binary works, how the CPU and RAM work, and also learned assembly language.",
   },
 ];
 
@@ -283,7 +283,7 @@ export default function Home() {
               <span className="section-num">01</span> About
             </p>
             <h2 className="section-title" id="about-h">
-              What I do
+              About me
             </h2>
             <p className="lede">{about[0]}</p>
             {about.slice(1).map((paragraph) => (
@@ -396,7 +396,7 @@ export default function Home() {
             </h2>
             <p className="body">
               Simulation work, client sites, and coursework. Each one has a
-              write-up with a link to the source.
+              writeup with a link to the source.
             </p>
 
             <ul className="project-list">
@@ -467,7 +467,7 @@ export default function Home() {
             </p>
             <h2 className="section-title">Get in touch</h2>
             <p className="body">
-              I am looking for full-time project management, procurement, and
+              I am looking for full time project management, procurement, and
               supply chain roles in Orlando, remote, or hybrid, and I am open to
               relocation with assistance. The fastest way to reach me is email.
             </p>
