@@ -15,9 +15,9 @@ const contact = {
 };
 
 const about = [
-  "I am a project manager working in supply chain. Sourcing, procurement, and the operations side of both.",
-  "Most days I am in an ERP system or in Excel. At Radix I am building a storage capacity model for a distribution center, working through 800,000 rows of Prophet 21 data covering 18,000 SKUs and 11,000 pick locations. It has turned up 205 storage spaces that were sitting unused.",
-  "Before that I spent a summer at L3Harris sourcing subcontracts, including work on the F-35 Technology Refresh. Contracts over the TINA threshold, under FAR and DFARS. Earlier I ran IT projects at Validity Hosting for four years and managed a team of five contractors.",
+  "I am a project manager working in supply chain, mostly on sourcing, procurement, and operations.",
+  "Most days I am in an ERP system or in Excel. At Radix I am building a storage capacity model for a distribution center, working through 800,000 rows of Prophet 21 data that covers 18,000 SKUs and 11,000 pick locations. So far it has turned up 205 storage spaces nobody was using.",
+  "Before that I spent a summer at L3Harris sourcing subcontracts, including work on the F-35 Technology Refresh. Those contracts ran over the TINA threshold and had to meet FAR and DFARS requirements. Earlier I spent four years running IT projects at Validity Hosting, where I managed a team of five contractors.",
   "I finished my degree at UCF in 2025 and I am studying for the CAPM. I live in Orlando and I am a dual citizen of the US and Canada.",
 ];
 
@@ -139,7 +139,7 @@ const education = {
 const coursework = [
   {
     title: "Project Management",
-    note: "Scope, WBS, CPM scheduling, budgeting, and risk planning. The basis for the Aerospace Transport project lead work.",
+    note: "Scope, WBS, CPM scheduling, budgeting, and risk planning. This is the class the Aerospace Transport plan came out of.",
   },
   {
     title: "Supply Chain & Operations Management",
@@ -147,7 +147,7 @@ const coursework = [
   },
   {
     title: "Management Information Systems",
-    note: "How ERP and business systems fit together, and where the data behind them actually lives.",
+    note: "How ERP and business systems fit together, and where the data behind them lives.",
   },
   {
     title: "Intro to Programming with C",
@@ -241,8 +241,8 @@ export default function Home() {
             <h1 className="rail-name">{contact.name}</h1>
             <p className="rail-role">{contact.role}</p>
             <p className="rail-blurb">
-              Turning operational data into decisions across procurement,
-              logistics, and the systems underneath them.
+              Sourcing, procurement, and operations, with most of my time spent
+              in ERP data.
             </p>
 
             <nav className="rail-nav" aria-label="Sections">
@@ -370,8 +370,8 @@ export default function Home() {
               Relevant coursework
             </h2>
             <p className="body">
-              The classes from my degree that map most directly onto the work I
-              do now.
+              These are the classes from my degree that connect most directly to
+              the work I do now.
             </p>
             <ul className="course-list">
               {coursework.map((course) => (
@@ -395,8 +395,8 @@ export default function Home() {
               Things I have built
             </h2>
             <p className="body">
-              Simulation work, client sites, and coursework. Each one has a
-              writeup with a link to the source.
+              Simulation work, client sites, and coursework. Each one has its own
+              page, with a link to the source or the document at the end.
             </p>
 
             <ul className="project-list">
@@ -467,9 +467,10 @@ export default function Home() {
             </p>
             <h2 className="section-title">Get in touch</h2>
             <p className="body">
-              I am looking for full time project management, procurement, and
-              supply chain roles in Orlando, remote, or hybrid, and I am open to
-              relocation with assistance. The fastest way to reach me is email.
+              I am looking for a full time role in project management,
+              procurement, or supply chain. Orlando, remote, or hybrid all work,
+              and I am open to relocating if there is assistance. Email is the
+              fastest way to reach me.
             </p>
             <div className="cta-row">
               <a className="cta" href={`mailto:${contact.email}`}>
