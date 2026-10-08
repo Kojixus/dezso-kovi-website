@@ -15,6 +15,34 @@
   --hairline-strong: var(--neutral-alpha-medium);
   --rail-width: 340px;
   --gutter: 40px;
+  /* Three families only: Montserrat displays, Open Sans reads, Roboto runs
+     the small tracked UI layer. Once UI's own stylesheet still reads
+     --font-code in a few rules, so point it at Roboto rather than leaving it
+     undefined and letting those rules fall back to the browser's monospace. */
+  --font-code: var(--font-label);
+}
+
+/* ----------------------------------------------------------- ui layer --- */
+
+/* These rules used to be set in Geist Mono. Roboto is proportional, so the
+   layer needs more weight (antialiasing on a dark ground thins 400 at 11px
+   into haze) and tabular figures to rebuild the numeral grid the monospace
+   gave for free. No monospace fallback anywhere: if Roboto is slow, falling
+   back to Courier reproduces the exact broken look this is avoiding. */
+.rail-nav a,
+.rail-meta,
+.section-label,
+.entry-dates,
+.skill-label,
+.project-year,
+.project-stack,
+.back-link,
+.doc-meta dt,
+.doc-file-meta {
+  font-family: var(--font-label), system-ui, sans-serif;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
 }
 
 * {
@@ -138,9 +166,9 @@ a {
   padding: 8px 0;
   text-decoration: none;
   color: var(--ink-dim);
-  font-family: var(--font-code), ui-monospace, monospace;
   font-size: 0.74rem;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.13em;
+  word-spacing: -0.06em;
   text-transform: uppercase;
   transition: color 160ms ease;
 }
@@ -184,9 +212,8 @@ a {
 
 .rail-meta {
   margin: 18px 0 0;
-  font-family: var(--font-code), ui-monospace, monospace;
-  font-size: 0.72rem;
-  letter-spacing: 0.06em;
+  font-size: 0.74rem;
+  letter-spacing: 0.03em;
   color: var(--ink-dim);
 }
 
@@ -210,16 +237,16 @@ a {
 
 .section-label {
   margin: 0 0 14px;
-  font-family: var(--font-code), ui-monospace, monospace;
   font-size: 0.72rem;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.14em;
+  word-spacing: -0.06em;
   text-transform: uppercase;
   color: var(--accent);
 }
 
 .section-num {
   color: var(--ink-dim);
-  margin-right: 10px;
+  margin-right: 0.85em;
 }
 
 .section-title {
@@ -263,16 +290,17 @@ a {
 
 .entry {
   display: grid;
-  grid-template-columns: 150px minmax(0, 1fr);
+  /* 150px fit the monospace exactly; Roboto's proportional advances pushed
+     the longer ranges ("January 2016 to January 2021") onto a second line. */
+  grid-template-columns: 172px minmax(0, 1fr);
   gap: 24px;
 }
 
 .entry-dates {
   margin: 4px 0 0;
-  font-family: var(--font-code), ui-monospace, monospace;
-  font-size: 0.72rem;
+  font-size: 0.73rem;
   line-height: 1.5;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.02em;
   color: var(--ink-dim);
 }
 
@@ -280,7 +308,7 @@ a {
   display: block;
   margin-top: 8px;
   color: var(--accent);
-  letter-spacing: 0.14em;
+  letter-spacing: 0.13em;
   text-transform: uppercase;
 }
 
@@ -370,9 +398,9 @@ a {
 
 .skill-label {
   margin: 0 0 12px;
-  font-family: var(--font-code), ui-monospace, monospace;
   font-size: 0.72rem;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.13em;
+  word-spacing: -0.06em;
   text-transform: uppercase;
   color: var(--ink-dim);
 }
@@ -459,8 +487,8 @@ a {
 
 .project-year {
   flex: none;
-  font-family: var(--font-code), ui-monospace, monospace;
-  font-size: 0.72rem;
+  font-size: 0.73rem;
+  letter-spacing: 0.04em;
   color: var(--ink-dim);
 }
 
@@ -472,9 +500,8 @@ a {
 }
 
 .project-stack {
-  font-family: var(--font-code), ui-monospace, monospace;
-  font-size: 0.7rem;
-  letter-spacing: 0.06em;
+  font-size: 0.73rem;
+  letter-spacing: 0.015em;
   color: var(--ink-dim);
 }
 
@@ -495,9 +522,9 @@ a {
 .back-link {
   display: inline-block;
   margin-bottom: 48px;
-  font-family: var(--font-code), ui-monospace, monospace;
   font-size: 0.74rem;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.13em;
+  word-spacing: -0.06em;
   text-transform: uppercase;
   color: var(--ink-dim);
   text-decoration: none;
@@ -539,9 +566,9 @@ a {
 }
 
 .doc-meta dt {
-  font-family: var(--font-code), ui-monospace, monospace;
-  font-size: 0.68rem;
+  font-size: 0.71rem;
   letter-spacing: 0.14em;
+  word-spacing: -0.06em;
   text-transform: uppercase;
   color: var(--ink-dim);
   margin-bottom: 8px;
@@ -585,9 +612,8 @@ a {
 
 .doc-file-meta {
   margin: 14px 0 0;
-  font-family: var(--font-code), ui-monospace, monospace;
-  font-size: 0.7rem;
-  letter-spacing: 0.08em;
+  font-size: 0.73rem;
+  letter-spacing: 0.03em;
   color: var(--ink-dim);
 }
 
@@ -640,11 +666,13 @@ a {
   border-color: var(--hairline-strong);
 }
 
+/* This one is a sentence, not a label, so it reads in the body voice rather
+   than as tracked micro type alongside the dates and section numbers. */
 .footer-note {
   margin: 56px 0 0;
-  font-family: var(--font-code), ui-monospace, monospace;
-  font-size: 0.7rem;
-  letter-spacing: 0.06em;
+  font-size: 0.82rem;
+  line-height: 1.6;
+  letter-spacing: 0;
   color: var(--ink-dim);
 }
 

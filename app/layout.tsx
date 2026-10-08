@@ -36,7 +36,7 @@ export default function RootLayout({
       data-surface="filled"
       data-transition="all"
       data-scaling="100"
-      className={`${fonts.heading.variable} ${fonts.body.variable} ${fonts.label.variable} ${fonts.code.variable}`}
+      className={`${fonts.heading.variable} ${fonts.body.variable} ${fonts.label.variable}`}
       suppressHydrationWarning
     >
       <body>
