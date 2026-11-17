@@ -6,7 +6,7 @@ const githubUser = "Kojixus";
 
 const contact = {
   name: "Dezso Kovi",
-  role: "Project Management & Supply Chain",
+  role: "Project Management & Project Operations",
   location: "Orlando, FL",
   phone: "(561) 460-3743",
   email: "dkovi24@gmail.com",
@@ -15,10 +15,11 @@ const contact = {
 };
 
 const about = [
-  "I am a project manager working in supply chain, mostly on sourcing, procurement, and operations.",
-  "Most days I am in an ERP system or in Excel. At Radix I am building a storage capacity model for a distribution center, working through 800,000 rows of Prophet 21 data that covers 18,000 SKUs and 11,000 pick locations. So far it has turned up 205 storage spaces nobody was using.",
-  "Before that I spent a summer at L3Harris sourcing subcontracts, including work on the F-35 Technology Refresh. Those contracts ran over the TINA threshold and had to meet FAR and DFARS requirements. Earlier I spent four years running IT projects at Validity Hosting, where I managed a team of five contractors.",
-  "I finished my degree at UCF in 2025 and I am studying for the CAPM. I live in Orlando and I am a dual citizen of the US and Canada.",
+  "I'm a project management and planning professional in aerospace and supply chain, with a background in sourcing, procurement, and operations.",
+  "In December I'm joining Lockheed Martin as a Project Management & Planning Operations Rep, supporting AMMM sustainment.",
+  "Most recently, at Radix, I built a storage capacity model using data from ERP systems, identifying underutilized spaces.",
+  "Before that, I spent a summer at L3Harris sourcing subcontracts, including work on the F-35 Technology Refresh, all above the TINA threshold and under FAR/DFARS. Earlier, I spent four years running IT projects at Validity Hosting, managing a team of five contractors.",
+  "I graduated from UCF in 2025, I'm studying for the CAPM, and I'm relocating from Orlando relocating to the Atlanta area. I'm a dual US–Canadian citizen.",
 ];
 
 const nav = [
@@ -33,10 +34,22 @@ const nav = [
 
 const experience = [
   {
+    company: "Lockheed Martin",
+    location: "Hybrid",
+    role: "Project Management & Project Operations",
+    dates: "December 2026 to Present",
+    bullets: [
+      "",
+      "",
+      "",
+      "",
+    ],
+  },
+  {
     company: "Radix Consulting Alliance",
     location: "Hybrid",
     role: "Data Analyst",
-    dates: "March 2026 to Present",
+    dates: "March 2026 to November 2026",
     bullets: [
       "Built a storage capacity model comparing usable cubic feet against on hand inventory, identifying 205 underutilized spaces through heat mapping analysis.",
       "Proficient in AI prompting; analyzing 800,000 rows of ERP (Prophet 21) order, production, transfer, inventory, and item master data for distribution center operations.",
